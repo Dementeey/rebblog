@@ -13,19 +13,20 @@ export default class Post extends Component<Props, State> {
   }
 
   render() {
-    const { match, post } = this.props;
-    console.log('====================================');
-    console.log(this.props);
-    console.log('====================================');
+    const { match, data, loading } = this.props;
+
     return (
       <div className="about__wrapper">
         <p>POST #{match.params.id}</p>
 
         <header>
-          <h2>{post.data.title}</h2>
+          <h2>{data.title}</h2>
         </header>
 
-        <section>{post.data.body}</section>
+        <section>
+          {loading && 'Loading...'}
+          {data.body}
+        </section>
       </div>
     );
   }

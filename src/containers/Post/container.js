@@ -7,7 +7,9 @@ import { fetchPost } from './thunx';
 import Post from './component';
 
 const mapStateToProps = ({ post }) => ({
-  post,
+  data: post.data,
+  error: post.error,
+  loading: post.loading,
 });
 
 const mapDispatchToProps = dispatch => ({

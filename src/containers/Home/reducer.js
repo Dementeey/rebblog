@@ -9,7 +9,7 @@ import {
 } from './constants';
 
 export const initialState = {
-  data: null,
+  data: [],
   error: '',
   loading: false,
 };

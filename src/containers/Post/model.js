@@ -5,11 +5,10 @@
 
 export type Props = {
   getPost: (id: string) => {},
-  post: {
-    data: PostDataType,
-    error: '',
-    loading: boolean,
-  },
+  data: PostDataType,
+  error: '',
+  loading: boolean,
+
   match: {
     params: {
       id: string,
