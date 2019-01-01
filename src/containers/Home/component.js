@@ -2,7 +2,7 @@
  * Home component
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import defaultImg from '../../images/notes.svg';
 
@@ -61,33 +61,43 @@ const defaultContentStyle = {
   textAlign: 'center',
 };
 
-export default () => (
-  <div className="home-page__wrapper" style={defaultWrapperStyle}>
-    {data.map(post => (
-      <article
-        key={post.id}
-        className="home-page__post"
-        style={defaultPostStyle}
-      >
-        <header>
-          <h2>{post.tite}</h2>
-        </header>
+export default class Home extends Component {
+  componentDidMount() {
+    console.log('================Home comp prop====================');
+    console.log(this.props);
+    console.log('====================================');
+  }
 
-        <section style={defaultContentStyle}>
-          <img
-            src={post.img || defaultImg}
-            alt="post_image"
-            style={{ maxWidth: '100px' }}
-          />
-          <p>{post.decription}</p>
-        </section>
+  render() {
+    return (
+      <div className="home-page__wrapper" style={defaultWrapperStyle}>
+        {data.map(post => (
+          <article
+            key={post.id}
+            className="home-page__post"
+            style={defaultPostStyle}
+          >
+            <header>
+              <h2>{post.tite}</h2>
+            </header>
 
-        <footer>
-          <p>Автор: {post.author}</p>
-          <p>Написан: {post.createdAt}</p>
-          <Link to={`/post/${post.id}`}>Читать больше</Link>
-        </footer>
-      </article>
-    ))}
-  </div>
-);
+            <section style={defaultContentStyle}>
+              <img
+                src={post.img || defaultImg}
+                alt="post_image"
+                style={{ maxWidth: '100px' }}
+              />
+              <p>{post.decription}</p>
+            </section>
+
+            <footer>
+              <p>Автор: {post.author}</p>
+              <p>Написан: {post.createdAt}</p>
+              <Link to={`/post/${post.id}`}>Читать больше</Link>
+            </footer>
+          </article>
+        ))}
+      </div>
+    );
+  }
+}

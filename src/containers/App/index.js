@@ -3,23 +3,16 @@
  */
 
 import React from 'react';
-import { Route, Switch, withRouter, NavLink } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Home from '../Home';
 import About from '../../components/About';
-import Post from '../Post/component';
+import Header from '../../components/Header';
+import Post from '../Post';
 import './index.css';
 
 const App = () => (
   <div>
-    <header>
-      <h1>Welcome</h1>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about" activeStyle={{ color: 'red' }}>
-          About
-        </NavLink>
-      </nav>
-    </header>
+    <Header />
 
     <main>
       <Switch>

@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { getPostsRequest } from './actions';
 import Home from './component';
 
-const mapStateToProps = state => ({
-  state,
+const mapStateToProps = ({ homePage }) => ({
+  homePage,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -3,15 +3,15 @@
  */
 
 import { connect } from 'react-redux';
-import { getPostRequest } from './actions';
+import { fetchPost } from './thunx';
 import Post from './component';
 
-const mapStateToProps = state => ({
-  state,
+const mapStateToProps = ({ post }) => ({
+  post,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getPost: id => dispatch(getPostRequest(id)),
+  getPost: id => dispatch(fetchPost(id)),
 });
 
 export default connect(
