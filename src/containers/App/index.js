@@ -7,6 +7,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Home from '../Home';
 import About from '../../components/About';
 import Header from '../../components/Header';
+import NotFoundPage from '../../components/NotFoundPage';
 import Post from '../Post';
 import './index.css';
 
@@ -19,6 +20,8 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/post/:id" component={Post} />
+
+        <Route component={NotFoundPage} />
       </Switch>
     </main>
   </div>

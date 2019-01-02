@@ -11,9 +11,9 @@ import defaultImg from '../../images/notes.svg';
 // const data = [
 //   {
 //     id: 1,
-//     tite: 'Первый пост',
+//     title: 'Первый пост',
 //     createdAt: new Date().toDateString(),
-//     decription:
+//     description:
 //       'Et numquam inventore possimus. Harum consectetur nesciunt. Dolore iure dolores.Eveniet nemo consequuntur non aperiam dolore ipsa. Consequuntur sint quis at error velit.',
 //     author: 'Anna Eichmann',
 //     img:
@@ -21,18 +21,18 @@ import defaultImg from '../../images/notes.svg';
 //   },
 //   {
 //     id: 2,
-//     tite: 'Второй пост',
+//     title: 'Второй пост',
 //     createdAt: new Date().toDateString(),
-//     decription:
+//     description:
 //       'Et numquam inventore possimus. Harum consectetur nesciunt. Dolore iure dolores.Eveniet nemo consequuntur non aperiam dolore ipsa. Consequuntur sint quis at error velit.',
 //     author: 'Anna Eichmann',
 //     img: '',
 //   },
 //   {
 //     id: 3,
-//     tite: 'Третий пост',
+//     title: 'Третий пост',
 //     createdAt: new Date().toDateString(),
-//     decription:
+//     description:
 //       'Et numquam inventore possimus. Harum consectetur nesciunt. Dolore iure dolores.Eveniet nemo consequuntur non aperiam dolore ipsa. Consequuntur sint quis at error velit.',
 //     author: 'Anna Eichmann',
 //     img: '',
@@ -74,7 +74,7 @@ export default class Home extends Component {
         style={defaultPostStyle}
       >
         <header>
-          <h2>{post.tite}</h2>
+          <h2>{post.title}</h2>
         </header>
 
         <section style={defaultContentStyle}>
@@ -83,7 +83,7 @@ export default class Home extends Component {
             alt="post_image"
             style={{ maxWidth: '100px' }}
           />
-          <p>{post.decription}</p>
+          <p>{post.description}</p>
         </section>
 
         <footer>
@@ -102,7 +102,7 @@ export default class Home extends Component {
         style={defaultPostStyle}
       >
         <header>
-          <h2>{post.tite}</h2>
+          <h2>{post.title}</h2>
         </header>
 
         <section style={defaultContentStyle}>
