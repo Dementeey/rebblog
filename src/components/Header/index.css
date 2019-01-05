@@ -1,0 +1,27 @@
+.global-header {
+  height: 50px;
+
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.global-header__nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.global-header__nav a {
+  margin: 0 10px;
+
+  color: #232323;
+  text-decoration: none;
+}
+
+.global-header__nav a:hover {
+  color: rgb(84, 214, 193);
+}
+
+.global-header .global-header__nav--active {
+  color: rgb(84, 214, 193);
+}

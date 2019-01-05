@@ -1,9 +1,10 @@
 .home-page__posts-wrapper {
+  position: relative;
+
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-
-  background-color: rgba(226, 148, 199, 0.196);
+  max-width: 1240px;
 }
 
 .home-page__post {
@@ -19,14 +20,14 @@
   border-radius: 10px;
   box-shadow: 0 8px 15px 10px rgba(218, 153, 153, 0.2);
 
-  transition: 0.3s;
+  transition: all 0.4s;
 }
 
 @media (hover: hover) {
   .home-page__post:hover {
-    transform: scale(1.02);
+    background-color: rgb(240, 231, 239);
 
-    transition: 0.3s;
+    transition: 0.4s;
   }
 }
 
@@ -61,4 +62,47 @@
 
 .home-page__post-img {
   width: 50%;
+  min-height: 200px;
+}
+
+/* Default block */
+
+.home-page__default-wrapper {
+  position: relative;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.home-page__default {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 400px;
+  height: 440px;
+  margin: 30px 5px;
+
+  background-color: rgba(170, 170, 170, 0.702);
+  border-radius: 15px;
+  /* opacity: 0.3; */
+}
+
+.home-page__default div {
+  width: 350px;
+  height: 200px;
+  margin: 20px;
+
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
+
+.home-page__default p {
+  width: 350px;
+  height: 20px;
+  margin-bottom: 0;
+
+  background-color: #f2f2f2;
+  border-radius: 7px;
 }

@@ -5,20 +5,20 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { type Props, type State } from './model';
+import { type Props, type State, type PostsType } from './model';
 
 import defaultImg from '../../images/notes.svg';
 import './index.css';
 
 export default class Home extends Component<Props, State> {
   componentDidMount() {
-    this.props.getPosts();
+    if (!this.props.data.length) {
+      this.props.getPosts();
+    }
   }
 
-  get renderPosts(): any {
-    const { data } = this.props;
-
-    return data.map(post => (
+  renderPosts = (data: Array<PostsType>): any =>
+    data.map(post => (
       <article key={post.postId} className="home-page__post">
         <header>
           <h2 className="home-page__post-title">{post.title}</h2>
@@ -42,14 +42,30 @@ export default class Home extends Component<Props, State> {
         </footer>
       </article>
     ));
-  }
+
+  renderDefaultBlock = (): any => {
+    return Array.from({ length: 9 }).map((el, i) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <div key={i} className="home-page__default">
+        <p />
+        <div />
+        <p />
+        <p />
+        <p />
+      </div>
+    ));
+  };
 
   render() {
-    const { loading } = this.props;
+    const { data, loading } = this.props;
 
     return (
       <div className="home-page__posts-wrapper">
-        {loading ? 'Loading...' : this.renderPosts}
+        {!loading && this.renderPosts(data)}
+
+        <div className="home-page__default-wrapper">
+          {loading && this.renderDefaultBlock()}
+        </div>
       </div>
     );
   }
