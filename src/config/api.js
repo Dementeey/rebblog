@@ -1,4 +1,4 @@
 export const API = {
-  URL: process.env.API_HOST || 'https://jsonplaceholder.typicode.com',
-  POSTS: 'posts/',
+  URL: process.env.API_HOST || 'http://localhost:9000',
+  POSTS: 'api/posts/',
 };
