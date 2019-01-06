@@ -4,6 +4,7 @@
  */
 
 import React, { Component } from 'react';
+import moment from 'moment';
 import { PulseLoader } from 'react-spinners';
 import { type Props, type State, type PostDataType } from './model';
 import './index.css';
@@ -25,6 +26,7 @@ export default class Post extends Component<Props, State> {
       <div className="post">
         <header>
           <h1 className="post__title">{currentData[0].title}</h1>
+          <p>{moment(currentData[0].createdAt).format('LL')}</p>
         </header>
 
         <section>{currentData[0].description}</section>
