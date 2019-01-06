@@ -9,7 +9,7 @@ import toastr from '../../helpers/toastr';
 
 export const fetchPosts = () => dispatch => {
   dispatch(getPostsRequest());
-  return axios
+  return axios // TODO --- test using generators
     .get(`${API.URL}/${API.POSTS}`)
     .then(({ data }) => {
       return dispatch(getPostsSuccess(data.payload));

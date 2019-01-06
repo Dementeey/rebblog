@@ -1,7 +1,10 @@
-// @flow
+/**
+ * @flow
+ * Header - index
+ */
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './index.css';
 
 export default () => (
@@ -14,5 +17,9 @@ export default () => (
         About
       </NavLink>
     </nav>
+    <div className="global-header__user">
+      <span>userName</span>
+      <Link to="/logout">Logout</Link>
+    </div>
   </header>
 );

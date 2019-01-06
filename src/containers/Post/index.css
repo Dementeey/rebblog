@@ -1,0 +1,6 @@
+.post__loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: scale(0.7);
+}

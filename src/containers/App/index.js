@@ -10,10 +10,11 @@ import Header from '../../components/Header';
 import NotFoundPage from '../../components/NotFoundPage';
 import Post from '../Post';
 import './index.css';
+import history from '../../helpers/history';
 
 const App = () => (
   <div>
-    <Header />
+    <Header history={history} />
 
     <main>
       <Switch>

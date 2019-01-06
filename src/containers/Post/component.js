@@ -4,7 +4,9 @@
  */
 
 import React, { Component } from 'react';
+import { PulseLoader } from 'react-spinners';
 import { type Props, type State } from './model';
+import './index.css';
 
 export default class Post extends Component<Props, State> {
   componentDidMount() {
@@ -24,6 +26,13 @@ export default class Post extends Component<Props, State> {
         </header>
 
         <section>
+          <PulseLoader
+            className="post__loader"
+            sizeUnit="px"
+            color="#36D7B7"
+            loading
+          />
+
           {loading && 'Loading...'}
           {data.body}
         </section>
