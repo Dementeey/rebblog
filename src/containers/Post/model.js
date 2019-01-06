@@ -5,7 +5,7 @@
 
 export type Props = {
   getPost: (id: string) => {},
-  data: PostDataType,
+  data: Array<PostDataType>,
   error: '',
   loading: boolean,
 
@@ -18,10 +18,11 @@ export type Props = {
 
 export type State = {};
 
-// TODO --- EDIT THIS PLACEHOLDER DATA
 export type PostDataType = {
-  userId?: number,
-  id?: number,
-  title?: string,
-  body?: string,
+  author: string,
+  createdAt: string,
+  postId: string | number,
+  title: string,
+  img?: string,
+  description: string,
 };

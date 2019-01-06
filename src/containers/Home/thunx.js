@@ -1,5 +1,5 @@
 /**
- * Post thunx
+ * Home - thunx
  */
 
 import axios from 'axios';
