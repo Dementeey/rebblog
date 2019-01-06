@@ -1,0 +1,98 @@
+/**
+ * AdminPanelPage - style
+ */
+
+.admin-panel {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.admin-panel__loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 11;
+
+  transform: scale(0.7);
+}
+
+.admin-panel__wrapper {
+  position: relative;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 90%;
+  max-width: 740px;
+  height: 100%;
+}
+
+.admin-panel__loader + .admin-panel__wrapper {
+  position: relative;
+  z-index: -1;
+
+  opacity: 0.1;
+}
+
+.admin-panel__form {
+  width: 100%;
+}
+
+.admin-panel__label .input-component-wrap {
+  display: flex;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.admin-panel__label .input-component-wrap textarea,
+.admin-panel__label .input-component-wrap input {
+  width: 100%;
+  padding: 10px;
+
+  color: rgb(125, 124, 123);
+  font-size: 13px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid rgb(108, 108, 108);
+  outline: none;
+
+  transition: all 0.4s;
+}
+
+.admin-panel__label .input-component-wrap textarea {
+  height: 300px;
+
+  resize: none;
+}
+
+.admin-panel__label-descr .input-component-wrap textarea {
+  max-height: 50px;
+  padding-top: 10px;
+
+  resize: none;
+}
+
+.admin-panel__label .input-component-wrap textarea:focus,
+.admin-panel__label .input-component-wrap input:focus {
+  /* border: 1px solid rgb(153, 155, 155); */
+  border-color: transparent;
+  border-radius: 3px;
+  box-shadow: 0px 3px 10px 3px rgba(208, 208, 208, 0.6);
+
+  transition: all 0.2s;
+}
+
+.admin-panel__label .input-component-wrap__error-message {
+  top: 40px;
+  left: 0;
+
+  font-size: 0.7em;
+}
+
+.admin-panel__label-descr .input-component-wrap__error-message {
+  top: 55px;
+}
+
+.admin-panel__label-area .input-component-wrap__error-message {
+  top: 305px;
+}
