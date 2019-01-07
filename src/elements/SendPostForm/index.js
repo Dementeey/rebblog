@@ -45,6 +45,11 @@ export default class LoginForm extends Component<Props, State> {
   };
 
   render() {
+    console.log('==========currentPhoto==========================');
+    console.log(this.props.currentPhoto);
+    console.log('====================================');
+
+    const { currentPhoto } = this.props;
     return (
       <Formsy onValidSubmit={this.submit} className="admin-panel__form">
         <MyInput
@@ -57,16 +62,31 @@ export default class LoginForm extends Component<Props, State> {
           labelClassName="admin-panel__label"
         />
 
-        <MyInput
-          title={<Icons.ImageSearchOutlined color="primary" />}
-          name="unsplash"
-          placeholder="Загрузить фото с unsplash.com Пример: italy, moto, apple"
-          validations="minLength:3"
-          validationError={messages.minText}
-          labelClassName="admin-panel__label"
-          callBack={this.searchUnsplash}
-          autocomplete="off"
-        />
+        {!currentPhoto.id ? (
+          <MyInput
+            title={<Icons.ImageSearchOutlined color="primary" />}
+            name="unsplash"
+            placeholder="Загрузить фото с unsplash.com Пример: italy, moto, apple"
+            validations="minLength:3"
+            validationError={messages.minText}
+            labelClassName="admin-panel__label"
+            callBack={this.searchUnsplash}
+            autocomplete="off"
+          />
+        ) : (
+          <div className="admin-panel__label">
+            <Icons.ImageOutlined color="primary" />
+            <div
+              style={{ width: '100%', maxHeight: '400px', overflow: 'auto' }}
+            >
+              <img
+                style={{ width: '100%' }}
+                src={currentPhoto.urls.small}
+                alt={currentPhoto.description || currentPhoto.user.username}
+              />
+            </div>
+          </div>
+        )}
 
         <MyTextarea
           title={

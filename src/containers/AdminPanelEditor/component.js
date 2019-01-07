@@ -41,6 +41,7 @@ export default class AdminPanelEditor extends Component<Props, State> {
             onSend={this.props.setPost}
             onOpenUnsplash={this.handleOpen}
             getPhoto={getPhoto}
+            currentPhoto={photos.currentPhoto}
           />
 
           {isOpen && (

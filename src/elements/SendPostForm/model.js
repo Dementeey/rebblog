@@ -3,10 +3,13 @@
  * SendPostForm - model
  */
 
+import { type CurrentPhotoType } from '../../containers/AdminPanelEditor/model';
+
 export type Props = {
   onSend: (model: SendModelType) => {},
   onOpenUnsplash: () => void,
   getPhoto: (str: string) => void,
+  currentPhoto: CurrentPhotoType,
 };
 
 export type SendModelType = {
