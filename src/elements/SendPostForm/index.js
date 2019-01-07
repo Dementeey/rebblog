@@ -44,6 +44,15 @@ export default class LoginForm extends Component<Props, State> {
     return currentTarget.value && onOpenUnsplash();
   };
 
+  handleKeyPress = e => {
+    if (e.ctrlKey && e.key === 'Enter') {
+      const { onOpenUnsplash, getPhoto } = this.props;
+      getPhoto(e.currentTarget.value);
+
+      return e.currentTarget.value && onOpenUnsplash();
+    }
+  };
+
   render() {
     console.log('==========currentPhoto==========================');
     console.log(this.props.currentPhoto);
@@ -66,18 +75,24 @@ export default class LoginForm extends Component<Props, State> {
           <MyInput
             title={<Icons.ImageSearchOutlined color="primary" />}
             name="unsplash"
-            placeholder="Загрузить фото с unsplash.com Пример: italy, moto, apple"
+            placeholder="Загрузить фото с unsplash.com Пример: italy, moto, apple, и нажмите 'ctrl + Enter'"
             validations="minLength:3"
             validationError={messages.minText}
             labelClassName="admin-panel__label"
             callBack={this.searchUnsplash}
+            onKeyPress={this.handleKeyPress}
             autocomplete="off"
           />
         ) : (
           <div className="admin-panel__label">
             <Icons.ImageOutlined color="primary" />
             <div
-              style={{ width: '100%', maxHeight: '400px', overflow: 'auto' }}
+              style={{
+                width: '100%',
+                maxHeight: '400px',
+                overflow: 'auto',
+                marginTop: '10px',
+              }}
             >
               <img
                 style={{ width: '100%' }}

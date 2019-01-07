@@ -6,15 +6,7 @@ import '../../../helpers/validationRules';
 import '../style.css';
 
 class Input extends Component {
-  // changeValue = event => this.props.setValue(event.currentTarget.value);
-
-  changeValue = event => {
-    const { callBack, setValue } = this.props;
-    const { value } = event.currentTarget;
-
-    setValue(value);
-    return callBack(event);
-  };
+  changeValue = event => this.props.setValue(event.currentTarget.value);
 
   render() {
     const {
@@ -25,6 +17,7 @@ class Input extends Component {
       isValid,
       onFocus,
       getValue,
+      onKeyPress,
       isRequired,
       placeholder,
       autocomplete,
@@ -44,6 +37,7 @@ class Input extends Component {
             type={type}
             value={getValue() || ''}
             onFocus={onFocus}
+            onKeyPress={onKeyPress}
             autoComplete={autocomplete}
           />
 
