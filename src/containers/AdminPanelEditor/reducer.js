@@ -1,11 +1,15 @@
 /**
- * HAdminPanelPage - reducer
+ * AdminPanelPage - reducer
  */
 
 import {
   SET_POST_ERROR,
   SET_POST_REQUEST,
   SET_POST_SUCCESS,
+  GET_PHOTO_ERROR,
+  GET_PHOTO_REQUEST,
+  GET_PHOTO_SUCCESS,
+  SET_CURRENT_PHOTO,
 } from './constants';
 
 export const initialState = {
@@ -13,6 +17,13 @@ export const initialState = {
   model: {},
   error: '',
   loading: false,
+
+  photosUnsplash: {
+    loading: false,
+    data: [],
+    currentPhoto: {},
+    error: '',
+  },
 };
 
 export default (state = initialState, action) => {
@@ -36,6 +47,44 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload.error,
         loading: false,
+      };
+
+    case GET_PHOTO_REQUEST:
+      return {
+        ...state,
+        photosUnsplash: {
+          ...state.photosUnsplash,
+          loading: true,
+        },
+      };
+
+    case GET_PHOTO_SUCCESS:
+      return {
+        ...state,
+        photosUnsplash: {
+          ...state.photosUnsplash,
+          data: action.payload,
+          loading: false,
+        },
+      };
+
+    case GET_PHOTO_ERROR:
+      return {
+        ...state,
+        photosUnsplash: {
+          ...state.photosUnsplash,
+          error: action.payload.error,
+          loading: false,
+        },
+      };
+
+    case SET_CURRENT_PHOTO:
+      return {
+        ...state,
+        photosUnsplash: {
+          ...state.photosUnsplash,
+          currentPhoto: action.payload,
+        },
       };
 
     default:

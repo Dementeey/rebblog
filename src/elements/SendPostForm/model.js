@@ -5,6 +5,8 @@
 
 export type Props = {
   onSend: (model: SendModelType) => {},
+  onOpenUnsplash: () => void,
+  getPhoto: (str: string) => void,
 };
 
 export type SendModelType = {
@@ -19,6 +21,7 @@ export type ModelType = {
   tags: string,
   text: string,
   title: string,
+  unsplashPhoto: any,
 };
 
 export type State = {};

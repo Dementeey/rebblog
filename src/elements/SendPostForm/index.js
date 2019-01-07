@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import Formsy from 'formsy-react';
 import Button from '@material-ui/core/Button';
-import SendIcon from '@material-ui/icons/Send';
+import * as Icons from '@material-ui/icons';
 import MyInput from '../../components/InputComponents/Input';
 import MyTextarea from '../../components/InputComponents/Textarea';
 
@@ -34,10 +34,21 @@ export default class LoginForm extends Component<Props, State> {
     onSend(sendModel);
   };
 
+  searchUnsplash = ({ currentTarget }: any) => {
+    if (currentTarget.value === '' || currentTarget.value === ' ') return;
+
+    const { onOpenUnsplash, getPhoto } = this.props;
+
+    getPhoto(currentTarget.value);
+
+    return currentTarget.value && onOpenUnsplash();
+  };
+
   render() {
     return (
       <Formsy onValidSubmit={this.submit} className="admin-panel__form">
         <MyInput
+          title={<Icons.TitleOutlined color="primary" />}
           name="title"
           placeholder="Заголовок"
           validations="minLength:3"
@@ -46,7 +57,24 @@ export default class LoginForm extends Component<Props, State> {
           labelClassName="admin-panel__label"
         />
 
+        <MyInput
+          title={<Icons.ImageSearchOutlined color="primary" />}
+          name="unsplash"
+          placeholder="Загрузить фото с unsplash.com Пример: italy, moto, apple"
+          validations="minLength:3"
+          validationError={messages.minText}
+          labelClassName="admin-panel__label"
+          callBack={this.searchUnsplash}
+          autocomplete="off"
+        />
+
         <MyTextarea
+          title={
+            <Icons.DescriptionOutlined
+              color="primary"
+              style={{ marginTop: '-15px' }}
+            />
+          }
           name="description"
           placeholder="Описание"
           validations={{
@@ -62,6 +90,12 @@ export default class LoginForm extends Component<Props, State> {
         />
 
         <MyTextarea
+          title={
+            <Icons.NoteAddOutlined
+              color="primary"
+              style={{ marginTop: '12px' }}
+            />
+          }
           placeholder="Текст поста"
           name="text"
           validations="minLength:3"
@@ -71,23 +105,40 @@ export default class LoginForm extends Component<Props, State> {
         />
 
         <MyInput
+          title={<Icons.LabelOutlined color="primary" />}
           name="tags"
-          placeholder="Теги. Писать по одному через ',' Пример: цветы, розы, тюльпаны"
+          placeholder={`Теги. Писать по одному через "," Пример: цветы, розы, тюльпаны`}
           validations="minLength:3"
           validationError={messages.minText}
           required
           labelClassName="admin-panel__label"
         />
 
-        <Button
-          style={{ margin: '10px auto 20px', display: 'flex' }}
-          type="submit"
-          variant="contained"
-          color="primary"
-          size="medium"
-        >
-          Отправить <SendIcon style={{ marginLeft: '5px', fontSize: '17px' }} />
-        </Button>
+        <div className="admin-panel__box-btn">
+          <Button
+            style={{ margin: '10px 0 20px 0', display: 'inline-flex' }}
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="medium"
+          >
+            Отправить
+            <Icons.Send style={{ marginLeft: '5px', fontSize: '17px' }} />
+          </Button>
+
+          <Button
+            style={{ margin: '10px 0 20px 0', display: 'inline-flex' }}
+            variant="contained"
+            color="primary"
+            size="medium"
+            disabled
+          >
+            Пердпросмотр
+            <Icons.VisibilityOutlined
+              style={{ marginLeft: '5px', fontSize: '17px' }}
+            />
+          </Button>
+        </div>
       </Formsy>
     );
   }

@@ -6,7 +6,15 @@ import '../../../helpers/validationRules';
 import '../style.css';
 
 class Input extends Component {
-  changeValue = event => this.props.setValue(event.currentTarget.value);
+  // changeValue = event => this.props.setValue(event.currentTarget.value);
+
+  changeValue = event => {
+    const { callBack, setValue } = this.props;
+    const { value } = event.currentTarget;
+
+    setValue(value);
+    return callBack(event);
+  };
 
   render() {
     const {
@@ -15,9 +23,11 @@ class Input extends Component {
       name,
       title,
       isValid,
+      onFocus,
       getValue,
       isRequired,
       placeholder,
+      autocomplete,
       labelClassName,
       isFormSubmitted,
       getErrorMessage,
@@ -33,6 +43,8 @@ class Input extends Component {
             onChange={this.changeValue}
             type={type}
             value={getValue() || ''}
+            onFocus={onFocus}
+            autoComplete={autocomplete}
           />
 
           <InputErrorMessage
