@@ -25,7 +25,20 @@ export default theme => ({
   link: {
     color: '#fff',
   },
-
+  paginationWrap: {
+    fontSize: '18px',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  pagination: {
+    display: 'flex',
+    width: 130,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  noData: {
+    postiton: 'absolute',
+  },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },

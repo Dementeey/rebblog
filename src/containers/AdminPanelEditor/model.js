@@ -6,7 +6,9 @@
 export type Props = {
   setPost: () => {},
   setCurrentPhoto: (obj: any) => void,
-  getPhoto: (str: string) => void,
+  getPhoto: (str: string, page: string, operation: string) => void,
+  getPhotoNext: (str: string) => void,
+  getPhotoPrev: (str: string) => void,
   data: [],
   error: '',
   loading: boolean,
@@ -22,6 +24,7 @@ export type PhotosType = {
   error: string,
   loading: boolean,
   currentPhoto: CurrentPhotoType,
+  paginationUrls: Array<string>,
 };
 
 export type SendModelType = {

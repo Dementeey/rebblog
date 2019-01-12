@@ -26,12 +26,18 @@ export const setPost = () => async dispatch => {
   }
 };
 
-export const getPhoto = (str = 'pizza') => async dispatch => {
-  const page = 1;
-  const query = str;
+const PER_PAGE = 20;
+
+export const getPhoto = (
+  query = '',
+  page = 3,
+  orientation = '',
+) => async dispatch => {
   const requestUrl = `${API.URL_UNSPLASH}/${
     API.PHOTO
-  }?page=${page}&query=${query}`;
+  }?page=${page}&query=${query}&per_page=${PER_PAGE}${orientation &&
+    `&orientation=${orientation}
+    `}`;
 
   axios.defaults.headers.common.Authorization = `Client-ID ${
     unsplashConfig.ACCESS
@@ -40,7 +46,48 @@ export const getPhoto = (str = 'pizza') => async dispatch => {
   await dispatch(getPhotosRequest());
   try {
     const respons = await axios.get(requestUrl);
-    await dispatch(getPhotosSuccess(respons.data.results));
+
+    await dispatch(getPhotosSuccess(respons));
+  } catch (error) {
+    await toastr('error', error.message);
+    await dispatch(getPhotosError(error));
+  }
+};
+
+export const getPhotoNext = nextUrl => async dispatch => {
+  axios.defaults.headers.common.Authorization = `Client-ID ${
+    unsplashConfig.ACCESS
+  }`;
+
+  await dispatch(getPhotosRequest());
+  try {
+    const respons = await axios.get(nextUrl);
+
+    await console.log('====res=====NEXT===========================');
+    await console.log(respons);
+    await console.log('====================================');
+
+    await dispatch(getPhotosSuccess(respons));
+  } catch (error) {
+    await toastr('error', error.message);
+    await dispatch(getPhotosError(error));
+  }
+};
+
+export const getPhotoPrev = prevUrl => async dispatch => {
+  axios.defaults.headers.common.Authorization = `Client-ID ${
+    unsplashConfig.ACCESS
+  }`;
+
+  await dispatch(getPhotosRequest());
+  try {
+    const respons = await axios.get(prevUrl);
+
+    await console.log('====res===PREV=============================');
+    await console.log(respons);
+    await console.log('====================================');
+
+    await dispatch(getPhotosSuccess(respons));
   } catch (error) {
     await toastr('error', error.message);
     await dispatch(getPhotosError(error));

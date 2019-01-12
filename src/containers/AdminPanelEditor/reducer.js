@@ -21,6 +21,7 @@ export const initialState = {
   photosUnsplash: {
     loading: false,
     data: [],
+    paginationUrls: [],
     currentPhoto: {},
     error: '',
   },
@@ -63,7 +64,8 @@ export default (state = initialState, action) => {
         ...state,
         photosUnsplash: {
           ...state.photosUnsplash,
-          data: action.payload,
+          paginationUrls: action.payload.headers.link.split(','),
+          data: action.payload.data.results,
           loading: false,
         },
       };

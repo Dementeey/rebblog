@@ -13,6 +13,7 @@ import PhotoGrid from '../../components/PhotoGrid';
 import { type Props, type State } from './model';
 import SendPostForm from '../../elements/SendPostForm';
 import './index.css';
+import { url } from 'inspector';
 
 export default class AdminPanelEditor extends Component<Props, State> {
   state = {
@@ -24,8 +25,49 @@ export default class AdminPanelEditor extends Component<Props, State> {
   handleOpen = () => this.setState({ isOpen: true });
 
   render() {
-    const { loading, photos, getPhoto, setCurrentPhoto } = this.props;
+    const {
+      loading,
+      photos,
+      getPhoto,
+      getPhotoPrev,
+      getPhotoNext,
+      setCurrentPhoto,
+    } = this.props;
     const { isOpen } = this.state;
+
+    /**
+     * this func search link
+     * @param str need String
+     */
+
+    const getUrl = (str: string): string => {
+      const { paginationUrls } = photos;
+
+      if (!paginationUrls.length) return '';
+
+      const filtered: string = paginationUrls.filter(item =>
+        item.match(str),
+      )[0];
+      const result: any = filtered && filtered.match(/<(.*)>/);
+
+      return result ? result[1] : '';
+    };
+
+    const currentPage = (): string => {
+      const nextUrl: string = getUrl('next');
+      const newPage: string | Array<string> =
+        nextUrl.match(/page=([0-9]*)/) || '';
+      const result: string | number = newPage && newPage[1] - 1;
+
+      console.log('=====nextUrl===============================');
+      console.log(nextUrl);
+      console.log('==============newPage #=====================');
+      console.log(newPage);
+      console.log('==============current=page #=====================');
+      console.log(result);
+      console.log('====================================');
+      return '0';
+    };
 
     return (
       <div className="admin-panel">
@@ -58,6 +100,11 @@ export default class AdminPanelEditor extends Component<Props, State> {
                 </Fab>
 
                 <PhotoGrid
+                  prevUrl={getUrl('prev')}
+                  nextUrl={getUrl('next')}
+                  currentPage={currentPage()}
+                  getPhotoNext={getPhotoNext}
+                  getPhotoPrev={getPhotoPrev}
                   setCurrentPhoto={setCurrentPhoto}
                   data={photos.data}
                   loading={photos.loading}

@@ -8,7 +8,7 @@ import { type CurrentPhotoType } from '../../containers/AdminPanelEditor/model';
 export type Props = {
   onSend: (model: SendModelType) => {},
   onOpenUnsplash: () => void,
-  getPhoto: (str: string) => void,
+  getPhoto: (str: string, page: string, operation: string) => void,
   currentPhoto: CurrentPhotoType,
 };
 

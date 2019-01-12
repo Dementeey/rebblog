@@ -44,8 +44,7 @@
 }
 
 .admin-panel__label .input-component-wrap textarea {
-  height: 300px;
-
+  min-height: 50px;
   resize: none;
 }
 
@@ -66,19 +65,8 @@
   transition: all 0.2s;
 }
 
-.admin-panel__label .input-component-wrap__error-message {
-  top: 40px;
-  left: 12px;
-
-  font-size: 0.7em;
-}
-
-.admin-panel__label-descr .input-component-wrap__error-message {
-  top: 55px;
-}
-
-.admin-panel__label-area .input-component-wrap__error-message {
-  top: 305px;
+.admin-panel__label-area .input-component-wrap textarea {
+  overflow: visible;
 }
 
 .admin-panel__box-btn {
@@ -89,7 +77,7 @@
 
 .admin-panel__modal {
   position: absolute;
-  top: 120px;
+  top: 175px;
   left: 50%;
   z-index: 12;
 
@@ -100,4 +88,9 @@
   transform: translateX(-50%);
 
   transition: all 0.9s;
+}
+
+.admin-panel__btn {
+  display: inline-flex;
+  margin: 10px 0 20px 0;
 }
