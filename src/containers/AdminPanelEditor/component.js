@@ -68,6 +68,30 @@ export default class AdminPanelEditor extends Component<Props, State> {
       return `${result}`;
     };
 
+    const bodyPost: any = [
+      '-t',
+      'loremimpeditSint est officiis natus maxime veritatis quaerat aperiam consequatur repellat. In reprehenderit aspernatur est ex molestiae facilis facere. Ea aut exercitationem ut commodi assumenda quos. Sunt exercitationem et molestiae at amet nesciunt. Beatae quas rerum error. Voluptatibus et veniam sapiente labore ab iusto vitae.',
+      '-img',
+      {
+        id: 'b6e21011-e8d2-4eac-8a29-bcd98115b6f0',
+        description:
+          'Autem deleniti labore dolores accusamus dolorem non ut consequatur velit.',
+        urls: {
+          regular:
+            'https://images.unsplash.com/photo-1543362905-f2423ef4e0f8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQ5Nzg0fQ',
+        },
+        user: {
+          name: 'voluptates',
+          username: 'voluptates',
+          links: {
+            html: 'https://unsplash.com/@andrewruiz',
+          },
+        },
+      },
+      '-t',
+      'loremimpedi12tSint est officiis natus maxime veritatis quaerat aperiam consequatur repellat. In reprehenderit aspernatur est ex molestiae facilis facere. Ea aut exercitationem ut commodi assumenda quos. Sunt exercitationem et molestiae at amet nesciunt. Beatae quas rerum error. Voluptatibus et veniam sapiente labore ab iusto vitae.',
+    ];
+
     return (
       <div className="admin-panel">
         <PulseLoader
@@ -79,6 +103,7 @@ export default class AdminPanelEditor extends Component<Props, State> {
 
         <div className="admin-panel__wrapper">
           <SendPostForm
+            bodyPost={bodyPost}
             onSend={this.props.setPost}
             onOpenUnsplash={this.handleOpen}
             getPhoto={getPhoto}

@@ -10,6 +10,7 @@ export type Props = {
   onOpenUnsplash: () => void,
   getPhoto: (str: string, page: string, operation: string) => void,
   currentPhoto: CurrentPhotoType,
+  bodyPost: Array<string | CurrentPhotoType>,
 };
 
 export type SendModelType = {
