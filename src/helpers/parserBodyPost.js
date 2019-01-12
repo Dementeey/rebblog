@@ -2,7 +2,7 @@ import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import * as Icons from '@material-ui/icons';
 
-export default data =>
+export default (data, removeItem, onChangeTextInBodyPost) =>
   data.map((item, index, arr) => {
     if (item === '-img') {
       const imgObj = arr[index + 1];
@@ -10,10 +10,16 @@ export default data =>
       return (
         <div key={imgObj.id} className="admin-editor__label">
           <Tooltip title="Удалить изображение" placement="bottom">
-            <Icons.DeleteForeverOutlined
-              color="primary"
-              style={{ cursor: 'pointer' }}
-            />
+            <button
+              type="button"
+              className="admin-editor__btn-remove"
+              onClick={() => removeItem('-img', arr[index + 1])}
+            >
+              <Icons.DeleteForeverOutlined
+                color="primary"
+                style={{ cursor: 'pointer' }}
+              />
+            </button>
           </Tooltip>
 
           <div className="admin-editor__img-wrap">
@@ -21,6 +27,7 @@ export default data =>
               src={imgObj.urls.regular}
               alt={imgObj.description || 'photo'}
             />
+
             <div className="admin-editor__img-descr">
               <Tooltip
                 title={`Перейти на unsplash.com/@${imgObj.user.username}`}
@@ -43,16 +50,29 @@ export default data =>
 
     if (item === '-t') {
       return (
-        <div key={arr[index + 1].length} className="admin-editor__label">
+        <div
+          key={arr[index + 1].length + Math.random()}
+          className="admin-editor__label"
+        >
           <Tooltip title="Удалить текст" placement="bottom">
-            <Icons.DeleteForeverOutlined
-              style={{ marginTop: '12px', cursor: 'pointer' }}
-              color="primary"
-            />
+            <button
+              type="button"
+              className="admin-editor__btn-remove"
+              onClick={() => removeItem('-t', arr[index + 2])}
+            >
+              <Icons.DeleteForeverOutlined
+                style={{ marginTop: '12px', cursor: 'pointer' }}
+                color="primary"
+              />
+            </button>
           </Tooltip>
 
-          <p className="admin-editor__text-input" contentEditable="">
-            {arr[index + 1]}
+          <p
+            onBlur={e => onChangeTextInBodyPost(e, arr[index + 1])}
+            className="admin-editor__text-input"
+            contentEditable=""
+          >
+            {arr[index + 2]}
           </p>
         </div>
       );

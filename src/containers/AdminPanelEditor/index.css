@@ -127,9 +127,46 @@
 }
 
 .admin-editor__img-link {
-  color: #2c2a2a;
   font-size: 0.8em;
+  color: #2c2a2a;
 }
+
+.admin-editor__img-link:hover {
+  color: #dd0660;
+}
+
 .admin-editor__text-input {
   margin: 15px 0;
+}
+
+.admin-editor__add-box-wrap {
+  position: absolute;
+  bottom: 90px;
+  left: -40px;
+}
+
+.admin-editor__add-box {
+  position: absolute;
+  top: -105px;
+  left: -7px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+
+  background-color: #ffffff;
+  border: 1px solid rgba(208, 208, 208, 0.6);
+  box-shadow: 0 3px 10px 3px rgba(208, 208, 208, 0.6);
+}
+
+.admin-editor__add-box button,
+.admin-editor__btn-remove {
+  margin: 5px 0;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }

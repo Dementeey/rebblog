@@ -17,6 +17,9 @@ export type Props = {
 
 export type State = {
   isOpen: boolean,
+  isOpenAddBox: boolean,
+  bodyPost: Array<string | CurrentPhotoType>,
+  countTextBox: number,
 };
 
 export type PhotosType = {

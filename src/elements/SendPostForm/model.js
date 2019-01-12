@@ -11,6 +11,8 @@ export type Props = {
   getPhoto: (str: string, page: string, operation: string) => void,
   currentPhoto: CurrentPhotoType,
   bodyPost: Array<string | CurrentPhotoType>,
+  removeItem: (flag: string, body: any) => void,
+  onChangeTextInBodyPost: (e: any) => void,
 };
 
 export type SendModelType = {

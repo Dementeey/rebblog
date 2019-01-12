@@ -48,19 +48,14 @@ export default class SendPostForm extends Component<Props, State> {
     }
   };
 
-  removeElement = (elem: any) => {
-    console.log('================elem====================');
-    console.log(elem);
-    console.log('===================refs=================');
-    console.log(this.textEdit.current.textContent);
-
-    console.log('====================================');
-
-    // return unmountComponentAtNode(this.text);
-  };
-
   render() {
-    const { currentPhoto, bodyPost } = this.props;
+    const {
+      currentPhoto,
+      bodyPost,
+      removeItem,
+      onChangeTextInBodyPost,
+    } = this.props;
+
     return (
       <Formsy onValidSubmit={this.submit} className="admin-editor__form">
         <fieldset className="admin-editor__fieldset">
@@ -126,10 +121,12 @@ export default class SendPostForm extends Component<Props, State> {
           />
         </fieldset>
 
-        <fieldset>
-          <legend>Остальные поля</legend>
-          {parserBodyPost(bodyPost)}
-        </fieldset>
+        {!!bodyPost.length && (
+          <fieldset>
+            <legend>Остальные поля</legend>
+            {parserBodyPost(bodyPost, removeItem, onChangeTextInBodyPost)}
+          </fieldset>
+        )}
 
         <div className="admin-editor__box-btn">
           <Button
@@ -141,17 +138,6 @@ export default class SendPostForm extends Component<Props, State> {
           >
             Отправить
             <Icons.Send style={{ marginLeft: '5px', fontSize: '17px' }} />
-          </Button>
-
-          <Button
-            className="admin-editor__btn"
-            type="submit"
-            variant="contained"
-            color="primary"
-            size="medium"
-            onClick={this.removeElement}
-          >
-            <Icons.RemoveCircleOutline />
           </Button>
 
           <Button

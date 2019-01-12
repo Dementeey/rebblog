@@ -63,10 +63,6 @@ export const getPhotoNext = nextUrl => async dispatch => {
   try {
     const respons = await axios.get(nextUrl);
 
-    await console.log('====res=====NEXT===========================');
-    await console.log(respons);
-    await console.log('====================================');
-
     await dispatch(getPhotosSuccess(respons));
   } catch (error) {
     await toastr('error', error.message);
@@ -82,10 +78,6 @@ export const getPhotoPrev = prevUrl => async dispatch => {
   await dispatch(getPhotosRequest());
   try {
     const respons = await axios.get(prevUrl);
-
-    await console.log('====res===PREV=============================');
-    await console.log(respons);
-    await console.log('====================================');
 
     await dispatch(getPhotosSuccess(respons));
   } catch (error) {

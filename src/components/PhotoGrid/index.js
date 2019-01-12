@@ -22,94 +22,106 @@ const TitlebarGridList = ({
   setCurrentPhoto,
   nextUrl,
   prevUrl,
-  currentPage = '',
-}) => (
-  <div className={classes.root}>
-    {!data.length ? (
-      <p className={classes.noData}>По этому запросу данных нет</p>
-    ) : (
-      data.length && (
-        <GridList cellHeight={180} className={classes.gridList}>
-          <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-            <ListSubheader
-              className={classes.paginationWrap}
-              component="div"
-              color="primary"
-            >
-              <span>Выберите одну фотографию</span>
-              <div className={classes.pagination}>
-                <Tooltip title="prev" placement="bottom">
-                  <Fab
-                    color="primary"
-                    size="small"
-                    onClick={() => getPhotoPrev(prevUrl)}
-                    disabled={!prevUrl}
-                  >
-                    <Icons.NavigateBefore />
-                  </Fab>
-                </Tooltip>
+}) => {
+  const currentPage = () => {
+    const newPage = nextUrl.match(/page=([0-9]*)/) || '';
+    const prevPage = prevUrl.match(/page=([0-9]*)/) || '';
 
-                <Fab size="small" variant="extended" disabled>
-                  {currentPage}
-                </Fab>
+    const prev = prevPage && +prevPage[1] + 1;
+    const current = newPage && newPage[1] - 1;
+    const result = current || prev;
 
-                <Tooltip title="next" placement="bottom">
-                  <Fab
-                    color="primary"
-                    size="small"
-                    onClick={() => getPhotoNext(nextUrl)}
-                    disabled={!nextUrl}
-                  >
-                    <Icons.NavigateNext />
-                  </Fab>
-                </Tooltip>
-              </div>
-            </ListSubheader>
-          </GridListTile>
+    return `${result}`;
+  };
 
-          <PulseLoader
-            className={classes.loader}
-            sizeUnit="px"
-            color="#36D7B7"
-            loading={loading}
-          />
-
-          {data.map(item => (
-            <GridListTile key={item.id}>
-              <img
-                role="presentation"
-                src={item.urls.small}
-                alt={item.description || 'Photo'}
-                onClick={() => {
-                  setCurrentPhoto(item);
-                  onClose();
-                }}
-              />
-              <GridListTileBar
-                title={item.description || 'Photo'}
-                subtitle={
-                  <Tooltip
-                    title={`Перейти на unsplash.com/@${item.user.username}`}
-                    placement="bottom"
-                  >
-                    <a
-                      className={classes.link}
-                      rel="noopener noreferrer"
-                      href={item.user.links.html}
-                      target="_blank"
+  return (
+    <div className={classes.root}>
+      {!data.length ? (
+        <p className={classes.noData}>По этому запросу данных нет</p>
+      ) : (
+        data.length && (
+          <GridList cellHeight={180} className={classes.gridList}>
+            <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+              <ListSubheader
+                className={classes.paginationWrap}
+                component="div"
+                color="primary"
+              >
+                <span>Выберите одну фотографию</span>
+                <div className={classes.pagination}>
+                  <Tooltip title="prev" placement="bottom">
+                    <Fab
+                      color="primary"
+                      size="small"
+                      onClick={() => getPhotoPrev(prevUrl)}
+                      disabled={!prevUrl}
                     >
-                      by: {item.user.name}
-                    </a>
+                      <Icons.NavigateBefore />
+                    </Fab>
                   </Tooltip>
-                }
-              />
+
+                  <Fab size="small" variant="extended" disabled>
+                    {currentPage()}
+                  </Fab>
+
+                  <Tooltip title="next" placement="bottom">
+                    <Fab
+                      color="primary"
+                      size="small"
+                      onClick={() => getPhotoNext(nextUrl)}
+                      disabled={!nextUrl}
+                    >
+                      <Icons.NavigateNext />
+                    </Fab>
+                  </Tooltip>
+                </div>
+              </ListSubheader>
             </GridListTile>
-          ))}
-        </GridList>
-      )
-    )}
-  </div>
-);
+
+            <PulseLoader
+              className={classes.loader}
+              sizeUnit="px"
+              color="#36D7B7"
+              loading={loading}
+            />
+
+            {data.map(item => (
+              <GridListTile key={item.id}>
+                <img
+                  role="presentation"
+                  src={item.urls.small}
+                  alt={item.description || 'Photo'}
+                  onClick={() => {
+                    setCurrentPhoto(item);
+                    onClose();
+                  }}
+                />
+                <GridListTileBar
+                  title={item.description || 'Photo'}
+                  subtitle={
+                    <Tooltip
+                      title={`Перейти на unsplash.com/@${item.user.username}`}
+                      placement="bottom"
+                    >
+                      <a
+                        className={classes.link}
+                        rel="noopener noreferrer"
+                        href={item.user.links.html}
+                        target="_blank"
+                      >
+                        by: {item.user.name}
+                      </a>
+                    </Tooltip>
+                  }
+                />
+              </GridListTile>
+            ))}
+          </GridList>
+        )
+      )}
+    </div>
+  );
+};
 
 TitlebarGridList.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -121,7 +133,6 @@ TitlebarGridList.propTypes = {
   loading: PropTypes.bool,
   nextUrl: PropTypes.any,
   prevUrl: PropTypes.any,
-  currentPage: PropTypes.string,
 };
 
 export default withStyles(styles)(TitlebarGridList);
