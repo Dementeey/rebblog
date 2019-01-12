@@ -13,7 +13,6 @@ import PhotoGrid from '../../components/PhotoGrid';
 import { type Props, type State } from './model';
 import SendPostForm from '../../elements/SendPostForm';
 import './index.css';
-import { url } from 'inspector';
 
 export default class AdminPanelEditor extends Component<Props, State> {
   state = {
@@ -55,18 +54,18 @@ export default class AdminPanelEditor extends Component<Props, State> {
 
     const currentPage = (): string => {
       const nextUrl: string = getUrl('next');
+      const prevUrl: string = getUrl('prev');
+
       const newPage: string | Array<string> =
         nextUrl.match(/page=([0-9]*)/) || '';
-      const result: string | number = newPage && newPage[1] - 1;
+      const prevPage: string | Array<string> =
+        prevUrl.match(/page=([0-9]*)/) || '';
 
-      console.log('=====nextUrl===============================');
-      console.log(nextUrl);
-      console.log('==============newPage #=====================');
-      console.log(newPage);
-      console.log('==============current=page #=====================');
-      console.log(result);
-      console.log('====================================');
-      return '0';
+      const prev: string | number = prevPage && +prevPage[1] + 1;
+      const current: string | number = newPage && newPage[1] - 1;
+      const result = current || prev;
+
+      return `${result}`;
     };
 
     return (

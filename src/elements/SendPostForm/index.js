@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import { unmountComponentAtNode } from 'react-dom';
+// import { unmountComponentAtNode } from 'react-dom';
 import Formsy from 'formsy-react';
 import Button from '@material-ui/core/Button';
 import * as Icons from '@material-ui/icons';
@@ -19,7 +19,7 @@ import {
   type SendModelType,
 } from './model';
 
-export default class LoginForm extends Component<Props, State> {
+export default class SendPostForm extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.textEdit = React.createRef();
@@ -38,10 +38,7 @@ export default class LoginForm extends Component<Props, State> {
 
   searchUnsplash = ({ currentTarget }: any) => {
     if (currentTarget.value === '' || currentTarget.value === ' ') return;
-
-    const { onOpenUnsplash, getPhoto } = this.props;
-
-    // getPhoto(currentTarget.value, '1', 'landscape');
+    const { onOpenUnsplash } = this.props;
 
     return currentTarget.value && onOpenUnsplash();
   };
@@ -68,10 +65,6 @@ export default class LoginForm extends Component<Props, State> {
   };
 
   render() {
-    console.log('==========currentPhoto==========================');
-    console.log(this.props.currentPhoto);
-    console.log('====================================');
-
     const { currentPhoto } = this.props;
     return (
       <Formsy onValidSubmit={this.submit} className="admin-panel__form">
