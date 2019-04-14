@@ -1,5 +1,4 @@
 /**
- * @flow
  * AdminPanelPage - component
  */
 
@@ -9,10 +8,9 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 
-import { type Props, type State } from './model';
 import './index.css';
 
-export default class Home extends Component<Props, State> {
+export default class Home extends Component {
   componentDidMount() {}
 
   openEditor = () => this.props.history.push('/panel/edit');

@@ -9,8 +9,8 @@ import About from './elements/About';
 import Header from './components/Header';
 import NotFoundPage from './elements/NotFoundPage';
 import Post from './containers/Post';
-import AdminPanelPage from '../AdminPanelPage';
-import AdminPanelEditor from '../AdminPanelEditor';
+import AdminPanelPage from './containers/AdminPanelPage';
+import AdminPanelEditor from './containers/AdminPanelEditor';
 import './index.css';
 
 const App = () => (

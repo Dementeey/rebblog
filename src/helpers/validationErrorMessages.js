@@ -1,18 +1,4 @@
-// @flow
-
-type messagesType = {
-  required: string,
-  email: string,
-  password: string,
-  confirmPassword: string,
-  name: string,
-  minText: string,
-  maxText: string,
-  twoFACodeChar: string,
-  maxDescr: string,
-};
-
-const messages: messagesType = {
+const messages = {
   required: 'Required',
   email: 'Invalid email address',
   password: 'Invalid password',
@@ -21,7 +7,7 @@ const messages: messagesType = {
   minText: 'min 3 char',
   maxText: 'max 32 char',
   twoFACodeChar: 'Code only 6 digits',
-  maxDescr: 'Maximum 150 char',
+  maxDescription: 'Maximum 150 char',
 };
 
 export default messages;

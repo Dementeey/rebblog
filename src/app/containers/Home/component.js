@@ -42,35 +42,19 @@ export default class Home extends Component {
       </article>
     ));
 
-  renderDefaultBlock = () =>
-    Array.from({ length: 9 }).map((el, i) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <div key={i} className="home-page__default">
-        <p />
-        <div />
-        <p />
-        <p />
-        <p />
-      </div>
-    ));
-
   render() {
     const { data, loading } = this.props;
 
     return (
       <div className="home-page__posts-wrapper">
-        {!loading && this.renderPosts(data)}
-
-        <div className="home-page__default-wrapper">
-          {loading && this.renderDefaultBlock()}
-        </div>
+        {loading ? 'Loading..' : this.renderPosts(data)}
       </div>
     );
   }
 }
 
 Home.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   getPosts: PropTypes.func,
   loading: PropTypes.bool,
 };

@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import App from './app';
 import history from './helpers/history';
-import 'typeface-roboto';
 import 'toastr/build/toastr.min.css';
+import 'typeface-roboto';
 
 ReactDOM.render(
   <Provider store={store}>

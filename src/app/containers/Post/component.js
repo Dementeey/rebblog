@@ -4,12 +4,12 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { PulseLoader } from 'react-spinners';
-import { type Props, type State, type PostDataType } from './model';
-import getDateRu from '../../helpers/getDateRu';
+import getDateRu from '../../../helpers/getDateRu';
 import './index.css';
 
-export default class Post extends Component<Props, State> {
+export default class Post extends Component {
   componentDidMount() {
     const { getPost, match } = this.props;
 
@@ -18,8 +18,8 @@ export default class Post extends Component<Props, State> {
 
   renderPost = () => {
     const { data } = this.props;
-    const currentData: Array<PostDataType> = data.filter(
-      el => el.postId === this.props.match.params.id,
+    const currentData = data.filter(
+      el => el.postId === this.props.match.params.id
     );
 
     return (
@@ -49,3 +49,10 @@ export default class Post extends Component<Props, State> {
     );
   }
 }
+
+Post.propTypes = {
+  data: PropTypes.array,
+  match: PropTypes.object,
+  getPost: PropTypes.func,
+  loading: PropTypes.bool,
+};

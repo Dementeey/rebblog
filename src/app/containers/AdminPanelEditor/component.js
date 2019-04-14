@@ -1,5 +1,4 @@
 /**
- * @flow
  * AdminPanelEditor - component
  */
 
@@ -10,52 +9,9 @@ import * as Icons from '@material-ui/icons';
 import Fade from '@material-ui/core/Fade';
 import PhotoGrid from '../../components/PhotoGrid';
 
-import { type Props, type State } from './model';
-import SendPostForm from '../../elements/SendPostForm';
 import './index.css';
 
-const mockImg = {
-  id: 'b6e21011-e8d2-4eac-8a29-bcd98115b6f0',
-  description:
-    'Autem deleniti labore dolores accusamus dolorem non ut consequatur velit.',
-  urls: {
-    regular:
-      'https://images.unsplash.com/photo-1543362905-f2423ef4e0f8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQ5Nzg0fQ',
-  },
-  user: {
-    name: 'voluptates',
-    username: 'voluptates',
-    links: {
-      html: 'https://unsplash.com/@andrewruiz',
-    },
-  },
-};
-
-const bodyPostTest: any = [
-  '-t',
-  'loremimpeditSint est officiis natus maxime veritatis quaerat aperiam consequatur repellat. In reprehenderit aspernatur est ex molestiae facilis facere. Ea aut exercitationem ut commodi assumenda quos. Sunt exercitationem et molestiae at amet nesciunt. Beatae quas rerum error. Voluptatibus et veniam sapiente labore ab iusto vitae.',
-  '-img',
-  {
-    id: 'b6e21011-e8d2-4eac-8a29-bcd98115b6f0',
-    description:
-      'Autem deleniti labore dolores accusamus dolorem non ut consequatur velit.',
-    urls: {
-      regular:
-        'https://images.unsplash.com/photo-1543362905-f2423ef4e0f8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjQ5Nzg0fQ',
-    },
-    user: {
-      name: 'voluptates',
-      username: 'voluptates',
-      links: {
-        html: 'https://unsplash.com/@andrewruiz',
-      },
-    },
-  },
-  '-t',
-  'loremimpedi12tSint est officiis natus maxime veritatis quaerat aperiam consequatur repellat. In reprehenderit aspernatur est ex molestiae facilis facere. Ea aut exercitationem ut commodi assumenda quos. Sunt exercitationem et molestiae at amet nesciunt. Beatae quas rerum error. Voluptatibus et veniam sapiente labore ab iusto vitae.',
-];
-
-export default class AdminPanelEditor extends Component<Props, State> {
+export default class AdminPanelEditor extends Component {
   state = {
     isOpen: false,
     isOpenAddBox: false,
@@ -63,27 +19,27 @@ export default class AdminPanelEditor extends Component<Props, State> {
     countTextBox: 1,
   };
 
-  addTextInBodyPost = (): void => {
+  addTextInBodyPost = () => {
     this.setState(prevState => ({
       bodyPost: prevState.bodyPost.concat(
         '-t',
         `id:${prevState.countTextBox}`,
-        '',
+        ''
       ),
       countTextBox: prevState.countTextBox + 1,
     }));
   };
 
-  addPhotoInBodyPost = (body: string): void => {
+  addPhotoInBodyPost = (borderBottomStyle, body) => {
     this.setState(prevState => ({
       bodyPost: prevState.bodyPost.concat('-img', body),
     }));
   };
 
-  removeItem = (flag: string, body: any, e: any) => {
+  removeItem = (flag, body, e) => {
     if (flag === '-img') {
       this.setState(prevState => {
-        const indexStart: number = prevState.bodyPost.indexOf(body) - 1;
+        const indexStart = prevState.bodyPost.indexOf(body) - 1;
         prevState.bodyPost.splice(indexStart, 2);
         return {
           bodyPost: prevState.bodyPost,
@@ -93,7 +49,7 @@ export default class AdminPanelEditor extends Component<Props, State> {
 
     if (flag === '-t') {
       this.setState(prevState => {
-        const indexStart: number = prevState.bodyPost.indexOf(body) - 2;
+        const indexStart = prevState.bodyPost.indexOf(body) - 2;
         prevState.bodyPost.splice(indexStart, 3);
         return {
           bodyPost: prevState.bodyPost,
@@ -102,11 +58,11 @@ export default class AdminPanelEditor extends Component<Props, State> {
     }
   };
 
-  onChangeTextInBodyPost = (e: any, id: number) => {
-    const text: string = e.currentTarget.textContent;
+  onChangeTextInBodyPost = (e, id) => {
+    const text = e.currentTarget.textContent;
 
     this.setState(prevState => {
-      const indexStart: number = prevState.bodyPost.indexOf(id) + 1;
+      const indexStart = prevState.bodyPost.indexOf(id) + 1;
       prevState.bodyPost.splice(indexStart, 1, text);
       return {
         bodyPost: prevState.bodyPost,
@@ -128,23 +84,21 @@ export default class AdminPanelEditor extends Component<Props, State> {
     const {
       loading,
       photos,
-      getPhoto,
+      // getPhoto,
       getPhotoPrev,
       getPhotoNext,
       setCurrentPhoto,
-      setPost,
+      // setPost,
     } = this.props;
     const { isOpen, isOpenAddBox, bodyPost } = this.state;
 
-    const getUrl = (str: string): string => {
+    const getUrl = str => {
       const { paginationUrls } = photos;
 
       if (!paginationUrls.length) return '';
 
-      const filtered: string = paginationUrls.filter(item =>
-        item.match(str),
-      )[0];
-      const result: any = filtered && filtered.match(/<(.*)>/);
+      const filtered = paginationUrls.filter(item => item.match(str))[0];
+      const result = filtered && filtered.match(/<(.*)>/);
 
       return result ? result[1] : '';
     };
@@ -162,16 +116,6 @@ export default class AdminPanelEditor extends Component<Props, State> {
         />
 
         <div className="admin-panel__wrapper">
-          <SendPostForm
-            removeItem={this.removeItem}
-            onChangeTextInBodyPost={this.onChangeTextInBodyPost}
-            bodyPost={bodyPost}
-            onSend={setPost}
-            onOpenUnsplash={this.handleOpen}
-            getPhoto={getPhoto}
-            currentPhoto={photos.currentPhoto}
-          />
-
           {isOpen && (
             <Fade in={isOpen}>
               <div className="admin-panel__modal">
@@ -213,10 +157,7 @@ export default class AdminPanelEditor extends Component<Props, State> {
                   <Icons.NoteAddOutlined color="primary" />
                 </button>
 
-                <button
-                  type="button"
-                  onClick={() => this.addPhotoInBodyPost(mockImg)}
-                >
+                <button type="button" onClick={() => this.addPhotoInBodyPost()}>
                   <Icons.ImageSearchOutlined color="primary" />
                 </button>
               </div>

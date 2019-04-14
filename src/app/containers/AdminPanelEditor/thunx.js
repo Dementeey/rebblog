@@ -11,9 +11,9 @@ import {
   getPhotosError,
   getPhotosSuccess,
 } from './actions';
-import { API } from '../../config/api';
-import { unsplashConfig } from '../../config/unsplash';
-import toastr from '../../helpers/toastr';
+import { API } from '../../../config/api';
+import { unsplashConfig } from '../../../config/unsplash';
+import toastr from '../../../helpers/toastr';
 
 export const setPost = () => async dispatch => {
   await dispatch(setPostRequest());
@@ -31,7 +31,7 @@ const PER_PAGE = 20;
 export const getPhoto = (
   query = '',
   page = 3,
-  orientation = '',
+  orientation = ''
 ) => async dispatch => {
   const requestUrl = `${API.URL_UNSPLASH}/${
     API.PHOTO
