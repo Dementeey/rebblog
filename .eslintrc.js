@@ -85,6 +85,7 @@ module.exports = {
     'array-callback-return': 1,
     'no-nested-ternary': 0,
     'guard-for-in': 0,
+    'jsx-a11y/label-has-associated-control': 1,
   },
   settings: {
     'import/resolver': {

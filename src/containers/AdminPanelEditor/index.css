@@ -1,0 +1,172 @@
+/**
+ * AdminPanelEditor- style
+ */
+
+.admin-editor__form {
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px 20px;
+}
+
+.admin-editor__form fieldset {
+  margin-bottom: 40px;
+
+  border: 1px solid rgba(190, 190, 190, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 3px 10px 3px rgba(208, 208, 208, 0.6);
+}
+
+.admin-editor__label {
+  display: flex;
+  align-items: center;
+}
+
+.admin-editor__label-area {
+  align-items: flex-start;
+}
+
+.admin-editor__label .input-component-wrap {
+  display: flex;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.admin-editor__label .input-component-wrap textarea,
+.admin-editor__label .input-component-wrap input,
+.admin-editor__label .admin-editor__text-input {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 10px;
+
+  font-size: 13px;
+  color: rgb(125, 124, 123);
+  word-break: break-word;
+
+  border: 1px solid transparent;
+  border-bottom: 1px solid rgb(108, 108, 108);
+  outline: none;
+
+  transition: all 0.4s;
+}
+
+.admin-editor__label .input-component-wrap textarea {
+  min-height: 50px;
+
+  resize: none;
+}
+
+.admin-editor__label-descr .input-component-wrap textarea {
+  max-height: 50px;
+  padding-top: 10px;
+
+  resize: none;
+}
+
+.admin-editor__label .input-component-wrap textarea:focus,
+.admin-editor__label .admin-editor__text-input:focus,
+.admin-editor__label .input-component-wrap input:focus {
+  /* border: 1px solid rgb(153, 155, 155); */
+  border-color: transparent;
+  border-radius: 3px;
+  box-shadow: 0 3px 10px 3px rgba(208, 208, 208, 0.6);
+
+  transition: all 0.2s;
+}
+
+.admin-editor__box-btn {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.admin-editor__modal {
+  position: absolute;
+  top: 175px;
+  left: 50%;
+  z-index: 12;
+
+  width: 500px;
+  height: 500px;
+
+  background-color: transparent;
+  transform: translateX(-50%);
+
+  transition: all 0.9s;
+}
+
+.admin-editor__btn {
+  display: inline-flex;
+  margin: 10px 0 20px 0;
+}
+
+.admin-editor__img-wrap {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.admin-editor__img-wrap img {
+  width: 100%;
+}
+
+.admin-editor__img-descr {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 25px;
+
+  line-height: 25px;
+  text-align: center;
+
+  background-color: rgba(238, 238, 238, 0.202);
+}
+
+.admin-editor__img-link {
+  font-size: 0.8em;
+  color: #2c2a2a;
+}
+
+.admin-editor__img-link:hover {
+  color: #dd0660;
+}
+
+.admin-editor__text-input {
+  margin: 15px 0;
+}
+
+.admin-editor__add-box-wrap {
+  position: absolute;
+  bottom: 90px;
+  left: -40px;
+}
+
+.admin-editor__add-box {
+  position: absolute;
+  top: -105px;
+  left: -7px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+
+  background-color: #ffffff;
+  border: 1px solid rgba(208, 208, 208, 0.6);
+  box-shadow: 0 3px 10px 3px rgba(208, 208, 208, 0.6);
+}
+
+.admin-editor__add-box button,
+.admin-editor__btn-remove {
+  margin: 5px 0;
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
