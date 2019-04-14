@@ -1,60 +1,57 @@
 /**
- * @flow
  * SendPostForm - index
  */
 
-import React, { Component } from 'react';
-import { unmountComponentAtNode } from 'react-dom';
-import Formsy from 'formsy-react';
-import Button from '@material-ui/core/Button';
-import * as Icons from '@material-ui/icons';
-import parserBodyPost from '../../helpers/parserBodyPost';
-import MyInput from '../../components/InputComponents/Input';
-import MyTextarea from '../../components/InputComponents/Textarea';
+import React, { Component } from 'react'
+import { unmountComponentAtNode } from 'react-dom'
+import Formsy from 'formsy-react'
+import Button from '@material-ui/core/Button'
+import * as Icons from '@material-ui/icons'
+import parserBodyPost from '../../../helpers/parserBodyPost'
+import MyInput from '../../components/InputComponents/Input'
+import MyTextarea from '../../components/InputComponents/Textarea'
 
-import messages from '../../helpers/validationErrorMessages';
+import messages from '../../../helpers/validationErrorMessages'
 import {
-  type Props,
-  type State,
-  type ModelType,
-  type SendModelType,
-} from './model';
+  ModelType,Props,
+  SendModelType, State,
+} from './model'
 
 export default class SendPostForm extends Component<Props, State> {
-  submit = (model: ModelType): void => {
-    const { onSend, bodyPost } = this.props;
+  public submit = (model: ModelType): void => {
+    const { onSend, bodyPost } = this.props
     const sendModel: SendModelType = {
       ...model,
       bodyPost,
-    };
-
-    sendModel.tags = model.tags && model.tags.split(', ');
-    onSend(sendModel);
-  };
-
-  searchUnsplash = ({ currentTarget }: any) => {
-    if (currentTarget.value === '' || currentTarget.value === ' ') return;
-    const { onOpenUnsplash } = this.props;
-
-    return currentTarget.value && onOpenUnsplash();
-  };
-
-  handleKeyPress = (e: any) => {
-    if (e.ctrlKey && e.key === 'Enter') {
-      const { onOpenUnsplash, getPhoto } = this.props;
-      getPhoto(e.currentTarget.value, '1', 'landscape');
-
-      return e.currentTarget.value && onOpenUnsplash();
     }
-  };
 
-  render() {
+    sendModel.tags = model.tags && model.tags.split(', ')
+    onSend(sendModel)
+  }
+
+  public searchUnsplash = ({ currentTarget }: any) => {
+    if (currentTarget.value === '' || currentTarget.value === ' ') { return }
+    const { onOpenUnsplash } = this.props
+
+    return currentTarget.value && onOpenUnsplash()
+  }
+
+  public handleKeyPress = (e: any) => {
+    if (e.ctrlKey && e.key === 'Enter') {
+      const { onOpenUnsplash, getPhoto } = this.props
+      getPhoto(e.currentTarget.value, '1', 'landscape')
+
+      return e.currentTarget.value && onOpenUnsplash()
+    }
+  }
+
+  public render() {
     const {
       currentPhoto,
       bodyPost,
       removeItem,
       onChangeTextInBodyPost,
-    } = this.props;
+    } = this.props
 
     return (
       <Formsy onValidSubmit={this.submit} className="admin-editor__form">
@@ -145,7 +142,7 @@ export default class SendPostForm extends Component<Props, State> {
             variant="contained"
             color="primary"
             size="medium"
-            disabled
+            disabled={true}
           >
             Пердпросмотр
             <Icons.VisibilityOutlined
@@ -154,6 +151,6 @@ export default class SendPostForm extends Component<Props, State> {
           </Button>
         </div>
       </Formsy>
-    );
+    )
   }
 }

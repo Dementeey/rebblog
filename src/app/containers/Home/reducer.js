@@ -6,13 +6,13 @@ import {
   GET_POSTS_ERROR,
   GET_POSTS_REQUEST,
   GET_POSTS_SUCCESS,
-} from './constants';
+} from './constants
 
 export const initialState = {
   data: [],
   error: '',
   loading: false,
-};
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -20,23 +20,23 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-      };
+      }
 
     case GET_POSTS_SUCCESS:
       return {
         ...state,
         data: action.payload,
         loading: false,
-      };
+      }
 
     case GET_POSTS_ERROR:
       return {
         ...state,
         error: action.payload.error,
         loading: false,
-      };
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}

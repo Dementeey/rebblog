@@ -3,16 +3,16 @@
  * AdminPanelEditor - component
  */
 
-import React, { Component } from 'react';
-import { PulseLoader } from 'react-spinners';
-import Fab from '@material-ui/core/Fab';
-import * as Icons from '@material-ui/icons';
-import Fade from '@material-ui/core/Fade';
-import PhotoGrid from '../../components/PhotoGrid';
+import React, { Component } from 'react'
+import { PulseLoader } from 'react-spinners'
+import Fab from '@material-ui/core/Fab'
+import * as Icons from '@material-ui/icons'
+import Fade from '@material-ui/core/Fade'
+import PhotoGrid from '../../components/PhotoGrid'
 
-import { type Props, type State } from './model';
-import SendPostForm from '../../elements/SendPostForm';
-import './index.css';
+import { type Props, type State } from './model'
+import SendPostForm from '../../elements/SendPostForm'
+import './index.css'
 
 const mockImg = {
   id: 'b6e21011-e8d2-4eac-8a29-bcd98115b6f0',
@@ -29,7 +29,7 @@ const mockImg = {
       html: 'https://unsplash.com/@andrewruiz',
     },
   },
-};
+}
 
 const bodyPostTest: any = [
   '-t',
@@ -53,7 +53,7 @@ const bodyPostTest: any = [
   },
   '-t',
   'loremimpedi12tSint est officiis natus maxime veritatis quaerat aperiam consequatur repellat. In reprehenderit aspernatur est ex molestiae facilis facere. Ea aut exercitationem ut commodi assumenda quos. Sunt exercitationem et molestiae at amet nesciunt. Beatae quas rerum error. Voluptatibus et veniam sapiente labore ab iusto vitae.',
-];
+]
 
 export default class AdminPanelEditor extends Component<Props, State> {
   state = {
@@ -61,68 +61,68 @@ export default class AdminPanelEditor extends Component<Props, State> {
     isOpenAddBox: false,
     bodyPost: [],
     countTextBox: 1,
-  };
+  }
 
   addTextInBodyPost = (): void => {
     this.setState(prevState => ({
       bodyPost: prevState.bodyPost.concat(
         '-t',
         `id:${prevState.countTextBox}`,
-        '',
+        ''
       ),
       countTextBox: prevState.countTextBox + 1,
-    }));
-  };
+    }))
+  }
 
   addPhotoInBodyPost = (body: string): void => {
     this.setState(prevState => ({
       bodyPost: prevState.bodyPost.concat('-img', body),
-    }));
-  };
+    }))
+  }
 
   removeItem = (flag: string, body: any, e: any) => {
     if (flag === '-img') {
       this.setState(prevState => {
-        const indexStart: number = prevState.bodyPost.indexOf(body) - 1;
-        prevState.bodyPost.splice(indexStart, 2);
+        const indexStart: number = prevState.bodyPost.indexOf(body) - 1
+        prevState.bodyPost.splice(indexStart, 2)
         return {
           bodyPost: prevState.bodyPost,
-        };
-      });
+        }
+      })
     }
 
     if (flag === '-t') {
       this.setState(prevState => {
-        const indexStart: number = prevState.bodyPost.indexOf(body) - 2;
-        prevState.bodyPost.splice(indexStart, 3);
+        const indexStart: number = prevState.bodyPost.indexOf(body) - 2
+        prevState.bodyPost.splice(indexStart, 3)
         return {
           bodyPost: prevState.bodyPost,
-        };
-      });
+        }
+      })
     }
-  };
+  }
 
   onChangeTextInBodyPost = (e: any, id: number) => {
-    const text: string = e.currentTarget.textContent;
+    const text: string = e.currentTarget.textContent
 
     this.setState(prevState => {
-      const indexStart: number = prevState.bodyPost.indexOf(id) + 1;
-      prevState.bodyPost.splice(indexStart, 1, text);
+      const indexStart: number = prevState.bodyPost.indexOf(id) + 1
+      prevState.bodyPost.splice(indexStart, 1, text)
       return {
         bodyPost: prevState.bodyPost,
-      };
-    });
-  };
+      }
+    })
+  }
 
-  handleClose = () => this.setState({ isOpen: false });
+  handleClose = () => this.setState({ isOpen: false })
 
-  handleOpen = () => this.setState({ isOpen: true });
+  handleOpen = () => this.setState({ isOpen: true })
 
   handleTogleAddBox = () => {
     this.setState(prevState => ({
       isOpenAddBox: !prevState.isOpenAddBox,
-    }));
-  };
+    }))
+  }
 
   render() {
     const {
@@ -133,25 +133,23 @@ export default class AdminPanelEditor extends Component<Props, State> {
       getPhotoNext,
       setCurrentPhoto,
       setPost,
-    } = this.props;
-    const { isOpen, isOpenAddBox, bodyPost } = this.state;
+    } = this.props
+    const { isOpen, isOpenAddBox, bodyPost } = this.state
 
     const getUrl = (str: string): string => {
-      const { paginationUrls } = photos;
+      const { paginationUrls } = photos
 
-      if (!paginationUrls.length) return '';
+      if (!paginationUrls.length) return ''
 
-      const filtered: string = paginationUrls.filter(item =>
-        item.match(str),
-      )[0];
-      const result: any = filtered && filtered.match(/<(.*)>/);
+      const filtered: string = paginationUrls.filter(item => item.match(str))[0]
+      const result: any = filtered && filtered.match(/<(.*)>/)
 
-      return result ? result[1] : '';
-    };
+      return result ? result[1] : ''
+    }
 
-    console.log('==========RENDER==========================');
-    console.log(bodyPost);
-    console.log('====================================');
+    console.log('==========RENDER==========================')
+    console.log(bodyPost)
+    console.log('====================================')
     return (
       <div className="admin-panel">
         <PulseLoader
@@ -224,6 +222,6 @@ export default class AdminPanelEditor extends Component<Props, State> {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

@@ -1,19 +1,18 @@
 /**
- * @flow
  * Home - component
  */
 
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { type Props, type State, type PostsType } from './model';
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { IProps, IPostsType } from './model'
 
-import defaultImg from '../../images/notes.svg';
-import './index.css';
+import defaultImg from '../../images/notes.svg'
+import './index.css'
 
-export default class Home extends Component<Props, State> {
+const Home: React.FC<IProps> = () => {
   componentDidMount() {
     if (!this.props.data.length) {
-      this.props.getPosts();
+      this.props.getPosts()
     }
   }
 
@@ -41,9 +40,9 @@ export default class Home extends Component<Props, State> {
           </Link>
         </footer>
       </article>
-    ));
+    ))
 
-  renderDefaultBlock = (): any => {
+  const renderDefaultBlock = (): any => {
     return Array.from({ length: 9 }).map((el, i) => (
       // eslint-disable-next-line react/no-array-index-key
       <div key={i} className="home-page__default">
@@ -53,11 +52,11 @@ export default class Home extends Component<Props, State> {
         <p />
         <p />
       </div>
-    ));
-  };
+    ))
+  }
 
   render() {
-    const { data, loading } = this.props;
+    const { data, loading } = this.props
 
     return (
       <div className="home-page__posts-wrapper">
@@ -67,6 +66,8 @@ export default class Home extends Component<Props, State> {
           {loading && this.renderDefaultBlock()}
         </div>
       </div>
-    );
+    )
   }
 }
+
+export default Home

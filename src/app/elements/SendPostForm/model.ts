@@ -3,9 +3,9 @@
  * SendPostForm - model
  */
 
-import { type CurrentPhotoType } from '../../containers/AdminPanelEditor/model';
+import { CurrentPhotoType type } from '../../containers/AdminPanelEditor/model'
 
-export type Props = {
+export interface Props {
   onSend: (model: SendModelType) => {},
   onOpenUnsplash: () => void,
   getPhoto: (str: string, page: string, operation: string) => void,
@@ -13,21 +13,21 @@ export type Props = {
   bodyPost: Array<string | CurrentPhotoType>,
   removeItem: (flag: string, body: any) => void,
   onChangeTextInBodyPost: (e: any) => void,
-};
+}
 
-export type SendModelType = {
+export interface SendModelType {
   description: string,
-  tags: string | Array<string>,
+  tags: string | string[],
   text: string,
   title: string,
-};
+}
 
-export type ModelType = {
+export interface ModelType {
   description: string,
   tags: string,
   text: string,
   title: string,
   unsplashPhoto: any,
-};
+}
 
-export type State = {};
+export interface State {}

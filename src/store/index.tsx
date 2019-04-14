@@ -1,13 +1,8 @@
 import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import reducer from '../app/containers/App/reducer'
-// import { StoreState } from './model'
-
-interface StoreState {
-  languageName: string;
-  enthusiasmLevel: number;
-}
+import reducer from '../app/containers/Home/reducer'
+import { StoreState } from './model'
 
 const store = createStore<StoreState>(
   reducer,

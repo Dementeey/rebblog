@@ -1,11 +1,11 @@
-import React from 'react';
-import { withFormsy, propTypes } from 'formsy-react';
-import InputErrorMessage from '../InputErrorMessage';
-import '../../../helpers/validationRules';
-import '../style.css';
+import React from 'react'
+import { withFormsy, propTypes } from 'formsy-react'
+import InputErrorMessage from '../InputErrorMessage'
+import '../../../../helpers/validationRules'
+import '../style.css'
 
 class Select extends React.Component {
-  changeValue = event => this.props.setValue(event.currentTarget.value);
+  changeValue = event => this.props.setValue(event.currentTarget.value)
 
   render() {
     const {
@@ -21,13 +21,13 @@ class Select extends React.Component {
       labelClassName,
       isFormSubmitted,
       getErrorMessage,
-    } = this.props;
+    } = this.props
 
     const getOptions = options.map(el => (
       <option key={el.title + el.value} value={el.value}>
         {el.title}
       </option>
-    ));
+    ))
 
     return (
       <label htmlFor={id || name} className={labelClassName || ''}>
@@ -53,12 +53,12 @@ class Select extends React.Component {
           />
         </div>
       </label>
-    );
+    )
   }
 }
 
 Select.propTypes = {
   ...propTypes,
-};
+}
 
-export default withFormsy(Select);
+export default withFormsy(Select)
