@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import App from './containers/App';
 import history from './helpers/history';
+import 'typeface-roboto';
 import 'toastr/build/toastr.min.css';
 
 ReactDOM.render(

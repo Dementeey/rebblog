@@ -5,6 +5,7 @@
   flex-flow: row wrap;
   justify-content: space-around;
   max-width: 1240px;
+  margin: 0 auto;
 }
 
 .home-page__post {
