@@ -4,16 +4,14 @@
 
 import axios from 'axios';
 import { getPostsRequest, getPostsError, getPostsSuccess } from './actions';
-import { API } from '../../config/api';
-import toastr from '../../helpers/toastr';
+import { API } from '../../../config/api';
+import toastr from '../../../helpers/toastr';
 
 export const fetchPosts = () => dispatch => {
   dispatch(getPostsRequest());
-  return axios // TODO --- test using generators
+  return axios
     .get(`${API.URL}/${API.POSTS}`)
-    .then(({ data }) => {
-      return dispatch(getPostsSuccess(data.payload));
-    })
+    .then(({ data }) => dispatch(getPostsSuccess(data.payload)))
     .catch(error => {
       toastr('error', error.message);
       return dispatch(getPostsError(error));

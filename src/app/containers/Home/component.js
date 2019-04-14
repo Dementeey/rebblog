@@ -1,23 +1,22 @@
 /**
- * @flow
  * Home - component
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { type Props, type State, type PostsType } from './model';
 
-import defaultImg from '../../images/notes.svg';
+import defaultImg from '../../../assets/images/notes.svg';
 import './index.css';
 
-export default class Home extends Component<Props, State> {
+export default class Home extends Component {
   componentDidMount() {
     if (!this.props.data.length) {
       this.props.getPosts();
     }
   }
 
-  renderPosts = (data: Array<PostsType>): any =>
+  renderPosts = data =>
     data.map(post => (
       <article key={post.postId} className="home-page__post">
         <header>
@@ -43,8 +42,8 @@ export default class Home extends Component<Props, State> {
       </article>
     ));
 
-  renderDefaultBlock = (): any => {
-    return Array.from({ length: 9 }).map((el, i) => (
+  renderDefaultBlock = () =>
+    Array.from({ length: 9 }).map((el, i) => (
       // eslint-disable-next-line react/no-array-index-key
       <div key={i} className="home-page__default">
         <p />
@@ -54,7 +53,6 @@ export default class Home extends Component<Props, State> {
         <p />
       </div>
     ));
-  };
 
   render() {
     const { data, loading } = this.props;
@@ -70,3 +68,9 @@ export default class Home extends Component<Props, State> {
     );
   }
 }
+
+Home.propTypes = {
+  data: PropTypes.object,
+  getPosts: PropTypes.func,
+  loading: PropTypes.bool,
+};

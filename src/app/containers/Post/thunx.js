@@ -4,8 +4,8 @@
 
 import axios from 'axios';
 import { getPostRequest, getPostError, getPostSuccess } from './actions';
-import { API } from '../../config/api';
-import toastr from '../../helpers/toastr';
+import { API } from '../../../config/api';
+import toastr from '../../../helpers/toastr';
 
 export const fetchPost = () => async dispatch => {
   await dispatch(getPostRequest());

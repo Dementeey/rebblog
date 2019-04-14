@@ -4,13 +4,13 @@
 
 import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import Home from '../Home';
-import About from '../../components/About';
-import Header from '../../components/Header';
-import NotFoundPage from '../../components/NotFoundPage';
-import Post from '../Post';
+import Home from './containers/Home';
+import About from './elements/About';
+import Header from './components/Header';
+import NotFoundPage from './elements/NotFoundPage';
+import Post from './containers/Post';
 import './index.css';
-import history from '../../helpers/history';
+import history from '../helpers/history';
 
 const App = () => (
   <div>
