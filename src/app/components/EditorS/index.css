@@ -1,4 +1,3 @@
-html,
 input,
 textarea {
   font-family: 'Roboto', sans-serif;
@@ -8,6 +7,13 @@ textarea {
 
 body {
   margin: 0;
+}
+
+.editor {
+  width: 80%;
+  margin: 30px auto;
+  padding: 18px;
+  border: 1px solid #eee;
 }
 
 p {

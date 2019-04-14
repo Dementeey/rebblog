@@ -1,4 +1,5 @@
 import { Editor } from 'slate-react';
+import PropTypes from 'prop-types';
 import { Value } from 'slate';
 
 import React from 'react';
@@ -85,7 +86,7 @@ class RichTextExample extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="editor">
         <Toolbar>
           {this.renderMarkButton('bold', 'format_bold')}
           {this.renderMarkButton('italic', 'format_italic')}
@@ -100,7 +101,7 @@ class RichTextExample extends React.Component {
         <Editor
           spellCheck
           autoFocus
-          placeholder="Enter some rich text..."
+          placeholder={this.props.placeholder}
           ref={this.ref}
           value={this.state.value}
           onChange={this.onChange}
@@ -224,6 +225,9 @@ class RichTextExample extends React.Component {
    */
 
   onChange = ({ value }) => {
+    const { callback } = this.props;
+
+    callback && callback(value);
     this.setState({ value });
   };
 
@@ -318,6 +322,14 @@ class RichTextExample extends React.Component {
     }
   };
 }
+/**
+ * PropTypes.
+ */
+
+RichTextExample.propTypes = {
+  callback: PropTypes.func,
+  placeholder: PropTypes.string,
+};
 
 /**
  * Export.
