@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/CloudUpload';
 import Editor from '../../components/EditorS';
+import backgroundImage from '../../../assets/images/writer.svg';
 
 import './index.css';
 
@@ -25,13 +26,14 @@ const AdminPanelEditor = ({ loading, setPost }) => {
 
   return (
     <div className="AdminPanelEditor-wrap">
+      <Editor callback={handlerEditor} placeholder="Type your story..." />
+
       <PulseLoader
         className="page-loader"
         sizeUnit="px"
         color="#36D7B7"
         loading={loading}
       />
-      <Editor callback={handlerEditor} placeholder="Type your story..." />
 
       <Tooltip title="Отправить" placement="bottom">
         <Button
@@ -41,11 +43,13 @@ const AdminPanelEditor = ({ loading, setPost }) => {
           type="submit"
           variant="contained"
           color="primary"
-          style={{ margin: '15px 0' }}
+          style={{ margin: '15px 0', minWidth: '100px' }}
         >
           <AddIcon />
         </Button>
       </Tooltip>
+
+      <img src={backgroundImage} alt="writer" />
     </div>
   );
 };
