@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { PulseLoader } from 'react-spinners';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -10,7 +11,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import './index.css';
 
-export default class Home extends Component {
+export default class AdminPanelPage extends Component {
   componentDidMount() {}
 
   openEditor = () => this.props.history.push('/panel/edit');
@@ -20,7 +21,7 @@ export default class Home extends Component {
     return (
       <div className="admin-panel">
         <PulseLoader
-          className="admin-panel__loader"
+          className="page-loader"
           sizeUnit="px"
           color="#36D7B7"
           loading={loading}
@@ -44,3 +45,8 @@ export default class Home extends Component {
     );
   }
 }
+
+AdminPanelPage.propTypes = {
+  history: PropTypes.object,
+  loading: PropTypes.bool,
+};

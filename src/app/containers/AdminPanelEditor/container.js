@@ -15,7 +15,7 @@ const mapStateToProps = ({ adminPanelEditor }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setPost: () => dispatch(setPost()),
+  setPost: json => dispatch(setPost(json)),
   getPhoto: (str, page, operation) => dispatch(getPhoto(str, page, operation)),
   getPhotoPrev: str => dispatch(getPhotoPrev(str)),
   getPhotoNext: str => dispatch(getPhotoNext(str)),

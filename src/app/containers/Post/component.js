@@ -39,7 +39,7 @@ export default class Post extends Component {
     return (
       <>
         <PulseLoader
-          className="post__loader"
+          className="page-loader"
           sizeUnit="px"
           color="#36D7B7"
           loading={loading}

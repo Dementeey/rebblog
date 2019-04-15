@@ -3,23 +3,57 @@
  */
 
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { PulseLoader } from 'react-spinners';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/CloudUpload';
 import Editor from '../../components/EditorS';
-// import { PulseLoader } from 'react-spinners';
 
 import './index.css';
 
-export default () => {
+const AdminPanelEditor = ({ loading, setPost }) => {
+  const [postData, updatePostData] = useState('');
   const handlerEditor = data => {
     console.log('===data=================================');
     console.log(data.toJSON());
     console.log('====================================');
+
+    updatePostData(data.toJSON());
   };
+  const handleSetPost = () => setPost(postData);
 
   return (
-    <div>
+    <div className="AdminPanelEditor-wrap">
+      <PulseLoader
+        className="page-loader"
+        sizeUnit="px"
+        color="#36D7B7"
+        loading={loading}
+      />
       <Editor callback={handlerEditor} placeholder="Type your story..." />
 
-      <button>send</button>
+      <Tooltip title="Отправить" placement="bottom">
+        <Button
+          aria-label="Add"
+          size="medium"
+          onClick={handleSetPost}
+          type="submit"
+          variant="contained"
+          color="primary"
+          style={{ margin: '15px 0' }}
+        >
+          <AddIcon />
+        </Button>
+      </Tooltip>
     </div>
   );
 };
+
+AdminPanelEditor.propTypes = {
+  // data: PropTypes.string,
+  setPost: PropTypes.func,
+  loading: PropTypes.bool,
+};
+
+export default AdminPanelEditor;

@@ -15,11 +15,15 @@ import { API } from '../../../config/api';
 import { unsplashConfig } from '../../../config/unsplash';
 import toastr from '../../../helpers/toastr';
 
-export const setPost = () => async dispatch => {
+export const setPost = json => async dispatch => {
+  const token = '12345';
+
   await dispatch(setPostRequest());
   try {
-    const respons = await axios.get(`${API.URL}/${API.POSTS}`);
-    await dispatch(setPostSuccess(respons.data.payload));
+    const response = await axios.post(`${API.POSTS}`, {
+      body: { json },
+    });
+    await dispatch(setPostSuccess(response.data.payload));
   } catch (error) {
     await toastr('error', error.message);
     await dispatch(setPostError(error));
@@ -45,9 +49,9 @@ export const getPhoto = (
 
   await dispatch(getPhotosRequest());
   try {
-    const respons = await axios.get(requestUrl);
+    const response = await axios.get(requestUrl);
 
-    await dispatch(getPhotosSuccess(respons));
+    await dispatch(getPhotosSuccess(response));
   } catch (error) {
     await toastr('error', error.message);
     await dispatch(getPhotosError(error));
@@ -61,9 +65,9 @@ export const getPhotoNext = nextUrl => async dispatch => {
 
   await dispatch(getPhotosRequest());
   try {
-    const respons = await axios.get(nextUrl);
+    const response = await axios.get(nextUrl);
 
-    await dispatch(getPhotosSuccess(respons));
+    await dispatch(getPhotosSuccess(response));
   } catch (error) {
     await toastr('error', error.message);
     await dispatch(getPhotosError(error));
@@ -77,9 +81,9 @@ export const getPhotoPrev = prevUrl => async dispatch => {
 
   await dispatch(getPhotosRequest());
   try {
-    const respons = await axios.get(prevUrl);
+    const response = await axios.get(prevUrl);
 
-    await dispatch(getPhotosSuccess(respons));
+    await dispatch(getPhotosSuccess(response));
   } catch (error) {
     await toastr('error', error.message);
     await dispatch(getPhotosError(error));
