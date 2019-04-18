@@ -15,11 +15,11 @@ import { API } from '../../../config/api';
 import { unsplashConfig } from '../../../config/unsplash';
 import toastr from '../../../helpers/toastr';
 
-export const setPost = json => async dispatch => {
+export const setPost = body => async dispatch => {
   await dispatch(setPostRequest());
   try {
     const response = await axios.post(`${API.POSTS}`, {
-      body: { json },
+      body,
     });
     await dispatch(setPostSuccess(response.data.payload));
   } catch (error) {

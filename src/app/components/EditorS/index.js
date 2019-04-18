@@ -44,6 +44,14 @@ class RichTextExample extends React.Component {
     value: Value.fromJSON(initialValue),
   };
 
+  componentDidMount() {
+    const {value} = this.props
+
+    if(value) {
+      this.setState({ value })
+    }
+  }
+
   /**
    * Check if the current selection has a mark with `type` in it.
    *
