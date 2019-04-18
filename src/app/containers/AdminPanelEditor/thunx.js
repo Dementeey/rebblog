@@ -16,8 +16,6 @@ import { unsplashConfig } from '../../../config/unsplash';
 import toastr from '../../../helpers/toastr';
 
 export const setPost = json => async dispatch => {
-  const token = '12345';
-
   await dispatch(setPostRequest());
   try {
     const response = await axios.post(`${API.POSTS}`, {
