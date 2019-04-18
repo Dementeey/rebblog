@@ -41,7 +41,6 @@ const initialValue = Value.fromJSON({
 const AdminPanelEditor = ({ loading, setPost }) => {
   const [postData, updatePostData] = useState('');
   const handlerEditor = data => updatePostData(data.toJSON());
-
   const handleSetPost = () => setPost(postData);
 
   return (

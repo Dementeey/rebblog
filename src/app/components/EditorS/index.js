@@ -16,6 +16,19 @@ import './index.css';
 
 const DEFAULT_NODE = 'paragraph';
 
+const handlerDrop = (event, editor) => {
+
+  console.log('event=========>', event);
+  console.log('editor=========>', editor);
+};
+
+const plugins = [
+  {
+    onDrop: handlerDrop,
+    onPaste: handlerPaste
+  }
+]
+
 /**
  * Define hotkey matchers.
  *
@@ -116,6 +129,7 @@ class RichTextExample extends React.Component {
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
           renderMark={this.renderMark}
+          plugins={plugins}
         />
       </div>
     );

@@ -9,5 +9,6 @@ RUN yarn
 RUN mv /code/node_modules /node_modules
 
 COPY . /code
+# COPY /node_modules ./client
 
 CMD ["yarn", "start"]
