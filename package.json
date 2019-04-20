@@ -6,58 +6,51 @@
     "node": "10.15.3"
   },
   "dependencies": {
-    "@material-ui/core": "3.9.2",
-    "@material-ui/icons": "3.0.2",
-    "@reach/router": "1.2.1",
-    "@types/jest": "24.0.11",
-    "@types/node": "11.11.3",
-    "@types/reach__router": "1.2.3",
-    "@types/react": "16.8.8",
-    "@types/react-dom": "16.8.2",
+    "@emotion/core": "10.0.10",
+    "@emotion/styled": "10.0.10",
+    "@material-ui/core": "3.8.1",
+    "@material-ui/icons": "3.0.1",
     "axios": "0.18.0",
+    "connected-react-router": "6.1.0",
     "history": "4.7.2",
+    "image-extensions": "1.1.0",
+    "immutable": "4.0.0-rc.12",
+    "is-url": "1.2.4",
     "moment": "2.23.0",
+    "prettier": "1.15.3",
+    "prop-types": "15.6.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-redux": "6.0.0",
-    "react-scripts": "3.0.0-next.b0cbf2ca",
+    "react-router-dom": "4.3.1",
+    "react-router-redux": "4.0.8",
+    "react-scripts": "2.1.8",
+    "react-spinners": "0.4.8",
     "redux": "4.0.1",
     "redux-devtools-extension": "2.13.7",
     "redux-thunk": "2.3.0",
+    "slate": "0.45.0",
+    "slate-react": "0.21.20",
     "toastr": "2.1.4",
-    "typescript": "3.3.3333"
-  },
-  "devDependencies": {
-    "husky": "1.3.1",
-    "lint-staged": "8.1.0",
-    "prettier": "1.15.3",
-    "tslint": "5.13.1",
-    "tslint-config-prettier": "1.18.0",
-    "tslint-react": "3.6.0"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "tslint",
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn run typecheck && yarn run precommit"
-    }
+    "typeface-roboto": "0.0.54"
   },
   "scripts": {
-    "dev": "BROWSER=none react-scripts start",
+    "dev": "react-scripts start",
+    "start": "/node_modules/react-scripts/bin/react-scripts.js start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "precommit": "lint-staged",
-    "tslint": "node_modules/.bin/tslint -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "3.3.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-prettier": "3.0.1",
+    "eslint-plugin-react": "7.11.1"
   },
   "author": "Anton Loyko",
   "license": "ISC",
