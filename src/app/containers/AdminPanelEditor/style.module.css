@@ -1,8 +1,9 @@
-.AdminPanelEditor-wrap {
-  width: 80%;
-  margin: 20px auto;
+.editorWrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 80%;
+  max-width: 900px;
+  margin: 20px auto;
 }

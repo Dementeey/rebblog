@@ -12,7 +12,7 @@ import Loader from '../../components/Loader';
 import Editor from '../../elements/EditorS';
 import EditorImageWrapper from '../EditorImageWrapper';
 
-import './style.module.css';
+import styles from './style.module.css';
 
 // TODO --- remove mock initialValue
 const initialValue = Value.fromJSON({
@@ -42,7 +42,7 @@ const AdminPanelEditor = ({ loading, setPost }) => {
   const handleSetPost = () => setPost(postData);
 
   return (
-    <div className="AdminPanelEditor-wrap">
+    <div className={styles.editorWrap}>
       <Editor
         value={initialValue}
         callback={handlerEditor}

@@ -8,7 +8,7 @@ import isUrl from 'is-url';
 import { isKeyHotkey } from 'is-hotkey';
 import initialValue from './value.json';
 import { Button, Icon, Toolbar, Image } from './components';
-import './style.css';
+import styles from './style.module.css';
 
 /**
  * Define the default node type.
@@ -175,7 +175,7 @@ class RichTextExample extends React.Component {
   render() {
     const { ImgWrapper } = this.props;
     return (
-      <div className="editor">
+      <div className={styles.editor}>
         <Toolbar>
           {this.renderMarkButton('bold', 'format_bold')}
           {this.renderMarkButton('italic', 'format_italic')}
