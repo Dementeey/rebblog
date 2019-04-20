@@ -50,7 +50,7 @@ const EditorImageWrapper = ({
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList>
                   <Tooltip title="Добавить по ссылке" placement="bottom">
-                    <Button onClick={handleClose}>
+                    <Button disabled onClick={handleClose}>
                       <AddPhotoIcon />
                     </Button>
                   </Tooltip>

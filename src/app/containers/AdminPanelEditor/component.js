@@ -47,15 +47,17 @@ const AdminPanelEditor = ({ loading, setPost }) => {
   const handleSetPost = () => {
     if (
       !title.length ||
-      !description.length ||
+      (!description.length || description.length > 150) ||
       !editor.document.nodes[0].nodes[0].leaves[0].text.length
     ) {
       return toastr('error', 'Проверьте все обязательные поля поля');
     }
+
     if (description.length > 150) {
       setDescriptionError(true);
       return toastr('error', 'Превышен лимит описания');
     }
+
     const postData = {
       title,
       description,
@@ -63,7 +65,7 @@ const AdminPanelEditor = ({ loading, setPost }) => {
       editor,
     };
 
-    setPost(postData);
+    return setPost(postData);
   };
 
   return (
@@ -72,7 +74,7 @@ const AdminPanelEditor = ({ loading, setPost }) => {
         autoComplete="off"
         onChange={handlerInput}
         className={styles.textField}
-        label="Заголовок"
+        label="Заголовок:"
         placeholder="Двенадцать дней и семь ночей..."
         margin="normal"
         name="title"
@@ -84,20 +86,20 @@ const AdminPanelEditor = ({ loading, setPost }) => {
         onChange={handlerInput}
         className={styles.textField}
         label={`Описание: ${
-          description.length ? Math.abs(description.length - 150) : ''
+          description.length ? 150 - description.length : ''
         }`}
         placeholder="Максимум 150 символов"
         margin="normal"
         name="description"
         value={description}
         required
-        error={isDescriptionError}
+        error={isDescriptionError || description.length > 150}
       />
       <TextField
         autoComplete="off"
         onChange={handlerInput}
         className={styles.textField}
-        label="Тэги"
+        label="Тэги:"
         placeholder="Тэги вводить через запятую."
         margin="normal"
         name="tags"
