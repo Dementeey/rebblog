@@ -1,8 +1,11 @@
-import { Editor } from 'slate-react';
-import PropTypes from 'prop-types';
-import { Value } from 'slate';
-
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Editor, getEventRange, getEventTransfer } from 'slate-react';
+import { Block, Value } from 'slate';
+import styled from '@emotion/styled';
+import imageExtensions from 'image-extensions';
+import isUrl from 'is-url';
+
 import { isKeyHotkey } from 'is-hotkey';
 import initialValue from './value.json';
 import { Button, Icon, Toolbar } from './components';
@@ -16,19 +19,6 @@ import './index.css';
 
 const DEFAULT_NODE = 'paragraph';
 
-const handlerDrop = (event, editor) => {
-
-  console.log('event=========>', event);
-  console.log('editor=========>', editor);
-};
-
-const plugins = [
-  {
-    onDrop: handlerDrop,
-    onPaste: handlerPaste
-  }
-]
-
 /**
  * Define hotkey matchers.
  *
@@ -39,6 +29,86 @@ const isBoldHotkey = isKeyHotkey('mod+b');
 const isItalicHotkey = isKeyHotkey('mod+i');
 const isUnderlinedHotkey = isKeyHotkey('mod+u');
 const isCodeHotkey = isKeyHotkey('mod+`');
+
+/**
+ * A styled image block component.
+ *
+ * @type {Component}
+ */
+
+const Image = styled('img')`
+  display: block;
+  max-width: 100%;
+  max-height: 20em;
+  box-shadow: ${props => (props.selected ? '0 0 0 2px blue;' : 'none')};
+`;
+
+/**
+ * A function to determine whether a URL has an image extension.
+ *
+ * @param {String} url
+ * @return {Boolean}
+ */
+
+function isImage(url) {
+  return imageExtensions.includes(getExtension(url));
+}
+
+/**
+ * Get the extension of the URL, using the URL API.
+ *
+ * @param {String} url
+ * @return {String}
+ */
+
+function getExtension(url) {
+  return new URL(url).pathname.split('.').pop();
+}
+
+/**
+ * A change function to standardize inserting images.
+ *
+ * @param {Editor} editor
+ * @param {String} src
+ * @param {Range} target
+ */
+
+function insertImage(editor, src, target) {
+  if (target) {
+    editor.select(target);
+  }
+
+  editor.insertBlock({
+    type: 'image',
+    data: { src },
+  });
+}
+
+/**
+ * The editor's schema.
+ *
+ * @type {Object}
+ */
+
+const schema = {
+  document: {
+    last: { type: 'paragraph' },
+    normalize: (editor, { code, node, child }) => {
+      // eslint-disable-next-line default-case
+      switch (code) {
+        case 'last_child_type_invalid': {
+          const paragraph = Block.create('paragraph');
+          return editor.insertNodeByKey(node.key, node.nodes.size, paragraph);
+        }
+      }
+    },
+  },
+  blocks: {
+    image: {
+      isVoid: true,
+    },
+  },
+};
 
 /**
  * The rich text example.
@@ -58,10 +128,10 @@ class RichTextExample extends React.Component {
   };
 
   componentDidMount() {
-    const {value} = this.props
+    const { value } = this.props;
 
-    if(value) {
-      this.setState({ value })
+    if (value) {
+      this.setState({ value });
     }
   }
 
@@ -118,6 +188,9 @@ class RichTextExample extends React.Component {
           {this.renderBlockButton('block-quote', 'format_quote')}
           {this.renderBlockButton('numbered-list', 'format_list_numbered')}
           {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
+          <Button onMouseDown={this.onClickImage}>
+            <Icon>image</Icon>
+          </Button>
         </Toolbar>
         <Editor
           spellCheck
@@ -129,7 +202,9 @@ class RichTextExample extends React.Component {
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
           renderMark={this.renderMark}
-          plugins={plugins}
+          schema={schema}
+          onDrop={this.onDropOrPaste}
+          onPaste={this.onDropOrPaste}
         />
       </div>
     );
@@ -196,7 +271,7 @@ class RichTextExample extends React.Component {
    */
 
   renderNode = (props, editor, next) => {
-    const { attributes, children, node } = props;
+    const { attributes, children, node, isFocused } = props;
 
     switch (node.type) {
       case 'block-quote':
@@ -211,6 +286,11 @@ class RichTextExample extends React.Component {
         return <li {...attributes}>{children}</li>;
       case 'numbered-list':
         return <ol {...attributes}>{children}</ol>;
+      case 'image': {
+        const src = node.data.get('src');
+        return <Image src={src} selected={isFocused} {...attributes} />;
+      }
+
       default:
         return next();
     }
@@ -342,6 +422,59 @@ class RichTextExample extends React.Component {
         editor.setBlocks('list-item').wrapBlock(type);
       }
     }
+  };
+
+  /**
+   * On clicking the image button, prompt for an image and insert it.
+   *
+   * @param {Event} event
+   */
+
+  onClickImage = event => {
+    event.preventDefault();
+    const src = window.prompt('Enter the URL of the image:');
+    if (!src) return;
+    this.editor.command(insertImage, src);
+  };
+
+  /**
+   * On drop, insert the image wherever it is dropped.
+   *
+   * @param {Event} event
+   * @param {Editor} editor
+   * @param {Function} next
+   */
+
+  onDropOrPaste = (event, editor, next) => {
+    const target = getEventRange(event, editor);
+    if (!target && event.type === 'drop') return next();
+
+    const transfer = getEventTransfer(event);
+    const { type, text, files } = transfer;
+
+    if (type === 'files') {
+      for (const file of files) {
+        const reader = new FileReader();
+        const [mime] = file.type.split('/');
+        if (mime !== 'image') continue;
+
+        reader.addEventListener('load', () => {
+          editor.command(insertImage, reader.result, target);
+        });
+
+        reader.readAsDataURL(file);
+      }
+      return;
+    }
+
+    if (type === 'text') {
+      if (!isUrl(text)) return next();
+      if (!isImage(text)) return next();
+      editor.command(insertImage, text, target);
+      return;
+    }
+
+    next();
   };
 }
 /**

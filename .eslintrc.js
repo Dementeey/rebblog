@@ -88,6 +88,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 1,
     'react/button-has-type': 0,
     'no-unused-expressions': 0,
+    'import/no-unresolved': 0,
   },
   settings: {
     'import/resolver': {
