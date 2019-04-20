@@ -40,9 +40,9 @@ const TitlebarGridList = ({
 
   const handleKeyPress = e => {
     if (e.ctrlKey && e.key === 'Enter') {
-      getPhoto(e.currentTarget.value, '1', 'landscape');
+      getPhoto(e.target.value, '1', 'landscape');
 
-      return e.currentTarget.value;
+      return e.target.value;
     }
   };
 
