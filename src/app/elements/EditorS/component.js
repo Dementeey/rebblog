@@ -59,14 +59,14 @@ function getExtension(url) {
  * @param {Range} target
  */
 
-function insertImage(editor, src, target) {
+function insertImage(editor, src, target, otherData) {
   if (target) {
     editor.select(target);
   }
 
   editor.insertBlock({
     type: 'image',
-    data: { src },
+    data: { src, otherData },
   });
 }
 
@@ -111,6 +111,7 @@ class RichTextExample extends React.Component {
 
   state = {
     value: Value.fromJSON(initialValue),
+    isCurrentPhoto: false,
   };
 
   componentDidMount() {
@@ -118,6 +119,16 @@ class RichTextExample extends React.Component {
 
     if (value) {
       this.setState({ value });
+    }
+  }
+
+  componentDidUpdate() {
+    const { currentPhoto } = this.props;
+
+    if (currentPhoto.urls && !this.state.isCurrentPhoto) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ isCurrentPhoto: true });
+      setTimeout(() => this.onClickImage(currentPhoto), 0);
     }
   }
 
@@ -162,6 +173,7 @@ class RichTextExample extends React.Component {
    */
 
   render() {
+    const { ImgWrapper } = this.props;
     return (
       <div className="editor">
         <Toolbar>
@@ -174,9 +186,11 @@ class RichTextExample extends React.Component {
           {this.renderBlockButton('block-quote', 'format_quote')}
           {this.renderBlockButton('numbered-list', 'format_list_numbered')}
           {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
-          <Button onMouseDown={this.onClickImage}>
-            <Icon>image</Icon>
-          </Button>
+          <ImgWrapper>
+            <Button>
+              <Icon>image</Icon>
+            </Button>
+          </ImgWrapper>
         </Toolbar>
         <Editor
           spellCheck
@@ -416,11 +430,19 @@ class RichTextExample extends React.Component {
    * @param {Event} event
    */
 
-  onClickImage = event => {
-    event.preventDefault();
-    const src = window.prompt('Enter the URL of the image:');
-    if (!src) return;
-    this.editor.command(insertImage, src);
+  onClickImage = currentPhoto => {
+    if (!currentPhoto.urls) return;
+    const src = currentPhoto.urls.regular;
+    const user = {
+      name: currentPhoto.user.name,
+      links: currentPhoto.user.links,
+    };
+
+    this.editor.command(insertImage, src, undefined, user);
+    setTimeout(() => {
+      this.props.setCurrentPhoto({});
+      this.setState({ isCurrentPhoto: false });
+    }, 0);
   };
 
   /**
@@ -442,6 +464,7 @@ class RichTextExample extends React.Component {
       for (const file of files) {
         const reader = new FileReader();
         const [mime] = file.type.split('/');
+        // eslint-disable-next-line no-continue
         if (mime !== 'image') continue;
 
         reader.addEventListener('load', () => {
@@ -470,7 +493,7 @@ class RichTextExample extends React.Component {
 RichTextExample.propTypes = {
   callback: PropTypes.func,
   placeholder: PropTypes.string,
-  imgWrapper: PropTypes.node,
+  ImgWrapper: PropTypes.any,
 };
 
 /**

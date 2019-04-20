@@ -3,17 +3,16 @@
  */
 
 import React, { useState } from 'react';
-import { Value } from 'slate'
+import { Value } from 'slate';
 import PropTypes from 'prop-types';
-import { PulseLoader } from 'react-spinners';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/CloudUpload';
-import Editor from '../../components/EditorS';
+import Loader from '../../components/Loader';
+import Editor from '../../elements/EditorS';
+import EditorImageWrapper from '../EditorImageWrapper';
 
-import backgroundImage from '../../../assets/images/writer.svg';
 import './style.module.css';
-
 
 // TODO --- remove mock initialValue
 const initialValue = Value.fromJSON({
@@ -35,8 +34,7 @@ const initialValue = Value.fromJSON({
       },
     ],
   },
-})
-
+});
 
 const AdminPanelEditor = ({ loading, setPost }) => {
   const [postData, updatePostData] = useState('');
@@ -45,14 +43,14 @@ const AdminPanelEditor = ({ loading, setPost }) => {
 
   return (
     <div className="AdminPanelEditor-wrap">
-      <Editor callback={handlerEditor} placeholder="Type your story..." value={initialValue} imgWrapper={}/>
-
-      <PulseLoader
-        className="page-loader"
-        sizeUnit="px"
-        color="#36D7B7"
-        loading={loading}
+      <Editor
+        value={initialValue}
+        callback={handlerEditor}
+        placeholder="Type your story..."
+        ImgWrapper={EditorImageWrapper}
       />
+
+      <Loader loading={loading} />
 
       <Tooltip title="Отправить" placement="bottom">
         <Button
@@ -67,8 +65,6 @@ const AdminPanelEditor = ({ loading, setPost }) => {
           <AddIcon />
         </Button>
       </Tooltip>
-
-      <img src={backgroundImage} alt="writer" />
     </div>
   );
 };

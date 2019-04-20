@@ -24,7 +24,7 @@ body {
   left: 50%;
   z-index: 11;
 
-  transform: scale(0.7);
+  transform: translate(-50%, -50%) scale(0.7);
 }
 
 .page-loader::before {

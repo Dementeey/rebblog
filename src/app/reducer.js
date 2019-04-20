@@ -3,16 +3,18 @@
  */
 
 import { combineReducers } from 'redux';
-import homePageReducer from './containers/Home/reducer';
-import postReducer from './containers/Post/reducer';
-import adminPanelReducer from './containers/AdminPanelPage/reducer';
-import adminPanelEditorReducer from './containers/AdminPanelEditor/reducer';
+import homePage from './containers/Home/reducer';
+import post from './containers/Post/reducer';
+import adminPanel from './containers/AdminPanelPage/reducer';
+import adminPanelEditor from './containers/AdminPanelEditor/reducer';
+import editorGetPhoto from './containers/EditorImageWrapper/reducer';
 
 const reducer = combineReducers({
-  homePage: homePageReducer,
-  post: postReducer,
-  adminPanel: adminPanelReducer,
-  adminPanelEditor: adminPanelEditorReducer,
+  post,
+  homePage,
+  adminPanel,
+  adminPanelEditor,
+  editorGetPhoto,
 });
 
 export default reducer;
