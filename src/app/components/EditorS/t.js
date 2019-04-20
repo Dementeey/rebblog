@@ -6,7 +6,7 @@ import initialValueAsJson from './value.json';
 import imageExtensions from 'image-extensions';
 import isUrl from 'is-url';
 import styled from '@emotion/styled';
-import { Button, Icon, Toolbar } from '../components';
+import { Button, Icon, Toolbar } from '../components'
 
 /**
  * Deserialize the initial editor value.

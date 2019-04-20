@@ -1,0 +1,18 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": ["node_modules/**/*.ts", "src/serviceWorker.js"]
+  },
+  "rules": {
+    "no-any": true,
+    "ordered-imports": [
+      true,
+      {
+        "import-sources-order": "any",
+        "named-imports-order": "case-insensitive"
+      }
+    ],
+    "object-literal-sort-keys": false,
+    "no-console": true
+  }
+}
