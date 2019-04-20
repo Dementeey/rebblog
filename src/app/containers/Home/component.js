@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import defaultImg from '../../../assets/images/notes.svg';
-import './index.css';
+import './style.module.css';
 
 export default class Home extends Component {
   componentDidMount() {

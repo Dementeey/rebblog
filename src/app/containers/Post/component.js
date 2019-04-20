@@ -5,9 +5,9 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { PulseLoader } from 'react-spinners';
+import Loader from '../../components/Loader';
 import getDateRu from '../../../helpers/getDateRu';
-import './index.css';
+import './style.module.css';
 
 export default class Post extends Component {
   componentDidMount() {
@@ -38,12 +38,7 @@ export default class Post extends Component {
     const { loading } = this.props;
     return (
       <>
-        <PulseLoader
-          className="page-loader"
-          sizeUnit="px"
-          color="#36D7B7"
-          loading={loading}
-        />
+        <Loader loading={loading} />
         {!!this.props.data.length && this.renderPost()}
       </>
     );

@@ -11,7 +11,7 @@ import NotFoundPage from './elements/NotFoundPage';
 import Post from './containers/Post';
 import AdminPanelPage from './containers/AdminPanelPage';
 import AdminPanelEditor from './containers/AdminPanelEditor';
-import './index.css';
+import './style.css';
 
 const App = () => (
   <div>

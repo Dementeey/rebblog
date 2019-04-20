@@ -3,8 +3,8 @@ import axios from 'axios';
 export const API = {
   URL: process.env.REACT_APP_API_HOST || 'http://localhost:9000',
   POSTS: 'api/posts/',
-  URL_UNSPLASH: 'https://api.unsplash.com',
-  PHOTO: '/search/photos',
+  UNSPLASH_URL: 'https://api.unsplash.com',
+  UNSPLASH_PHOTO: '/search/photos',
 };
 const accessToken = localStorage.getItem('accessToken') || '1234';
 const refreshToken = localStorage.getItem('refreshToken') || '1234';

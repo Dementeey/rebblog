@@ -4,12 +4,12 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { PulseLoader } from 'react-spinners';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
+import Loader from '../../components/Loader';
 
-import './index.css';
+import './style.module.css';
 
 export default class AdminPanelPage extends Component {
   componentDidMount() {}
@@ -20,12 +20,7 @@ export default class AdminPanelPage extends Component {
     const { loading } = this.props;
     return (
       <div className="admin-panel">
-        <PulseLoader
-          className="page-loader"
-          sizeUnit="px"
-          color="#36D7B7"
-          loading={loading}
-        />
+        <Loader loading={loading} />
         <div className="admin-panel__wrapper">
           <Tooltip title="Добавить новый пост" placement="bottom">
             <Button
