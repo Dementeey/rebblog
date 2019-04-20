@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 
-import './index.css';
+import './style.module.css';
 
 export default class AdminPanelPage extends Component {
   componentDidMount() {}

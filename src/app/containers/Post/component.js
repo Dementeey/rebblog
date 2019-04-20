@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { PulseLoader } from 'react-spinners';
 import getDateRu from '../../../helpers/getDateRu';
-import './index.css';
+import './style.module.css';
 
 export default class Post extends Component {
   componentDidMount() {

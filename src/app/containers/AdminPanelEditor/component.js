@@ -12,7 +12,7 @@ import AddIcon from '@material-ui/icons/CloudUpload';
 import Editor from '../../components/EditorS';
 
 import backgroundImage from '../../../assets/images/writer.svg';
-import './index.css';
+import './style.module.css';
 
 
 // TODO --- remove mock initialValue
@@ -45,7 +45,7 @@ const AdminPanelEditor = ({ loading, setPost }) => {
 
   return (
     <div className="AdminPanelEditor-wrap">
-      <Editor callback={handlerEditor} placeholder="Type your story..." value={initialValue} />
+      <Editor callback={handlerEditor} placeholder="Type your story..." value={initialValue} imgWrapper={}/>
 
       <PulseLoader
         className="page-loader"

@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Editor, getEventRange, getEventTransfer } from 'slate-react';
 import { Block, Value } from 'slate';
-import styled from '@emotion/styled';
 import imageExtensions from 'image-extensions';
 import isUrl from 'is-url';
 
 import { isKeyHotkey } from 'is-hotkey';
 import initialValue from './value.json';
-import { Button, Icon, Toolbar } from './components';
-import './index.css';
+import { Button, Icon, Toolbar, Image } from './components';
+import './style.css';
 
 /**
  * Define the default node type.
@@ -29,19 +28,6 @@ const isBoldHotkey = isKeyHotkey('mod+b');
 const isItalicHotkey = isKeyHotkey('mod+i');
 const isUnderlinedHotkey = isKeyHotkey('mod+u');
 const isCodeHotkey = isKeyHotkey('mod+`');
-
-/**
- * A styled image block component.
- *
- * @type {Component}
- */
-
-const Image = styled('img')`
-  display: block;
-  max-width: 100%;
-  max-height: 20em;
-  box-shadow: ${props => (props.selected ? '0 0 0 2px blue;' : 'none')};
-`;
 
 /**
  * A function to determine whether a URL has an image extension.
@@ -484,6 +470,7 @@ class RichTextExample extends React.Component {
 RichTextExample.propTypes = {
   callback: PropTypes.func,
   placeholder: PropTypes.string,
+  imgWrapper: PropTypes.node,
 };
 
 /**
