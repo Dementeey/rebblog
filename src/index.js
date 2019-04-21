@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import App from './containers/App';
+import App from './app';
 import history from './helpers/history';
-import 'typeface-roboto';
 import 'toastr/build/toastr.min.css';
+import 'typeface-roboto';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -14,5 +14,5 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
