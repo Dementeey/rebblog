@@ -7,13 +7,14 @@ import { getPostRequest, getPostError, getPostSuccess } from './actions';
 import { API } from '../../../config/api';
 import toastr from '../../../helpers/toastr';
 
-export const fetchPost = () => async dispatch => {
+export const fetchPost = id => async dispatch => {
   await dispatch(getPostRequest());
   try {
-    const respons = await axios.get(`${API.URL}/${API.POSTS}`);
-    await dispatch(getPostSuccess(respons.data.payload));
-  } catch (error) {
-    await toastr('error', error.message);
-    await dispatch(getPostError(error));
+    const response = await axios.get(`${API.POST}/${id}`);
+
+    await dispatch(getPostSuccess(response.data.payload));
+  } catch ({ message }) {
+    await toastr('error', message);
+    await dispatch(getPostError(message));
   }
 };

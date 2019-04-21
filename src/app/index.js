@@ -42,7 +42,7 @@ const App = ({ setDataInState, signData }) => {
 
   return (
     <>
-      <Route path="/" component={Header} />
+      <Route path="/" render={props => <Header isAuth={isAuth} {...props} />} />
 
       <main>
         <Switch>
@@ -88,8 +88,9 @@ App.propTypes = {
  * Connect App
  */
 
-const mapStateToProps = ({ sign }) => ({
+const mapStateToProps = ({ sign, post }) => ({
   signData: sign.data,
+  postData: post.data,
 });
 
 const mapDispatchToProps = dispatch => ({

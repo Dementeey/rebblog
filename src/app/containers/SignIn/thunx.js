@@ -11,7 +11,7 @@ import { setUserData } from '../../../helpers/userUtils';
 export const getSignIn = body => async dispatch => {
   await dispatch(signInRequest());
   try {
-    const response = await axios.post(`/${API.SIGN}`, body);
+    const response = await axios.post(API.SIGN, body);
     const { payload } = response.data;
 
     await setUserData(payload);
