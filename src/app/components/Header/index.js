@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import logout from '../../../helpers/logout';
 
 import './index.css';
 
@@ -23,7 +24,7 @@ export default () => (
     </nav>
     <div className="global-header__user">
       <span>userName</span>
-      <Link to="/logout">Выход</Link>
+      <button onClick={logout}>Выход</button>
     </div>
   </header>
 );
