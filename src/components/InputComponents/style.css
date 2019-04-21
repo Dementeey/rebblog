@@ -1,0 +1,19 @@
+.input-component-wrap {
+  position: relative;
+}
+
+.input-component-wrap__error-message {
+  position: absolute;
+  top: 20px;
+  left: -203px;
+  color: red;
+  width: 100%;
+  text-align: left;
+  font-size: 0.8em;
+}
+
+.custom-checbox {
+  width: 22px;
+  height: 22px;
+  margin: 0 5px;
+}

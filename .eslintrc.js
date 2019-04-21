@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const prettierOptions = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '.prettierrc'), 'utf8')
+  fs.readFileSync(path.resolve(__dirname, '.prettierrc'), 'utf8'),
 );
 
 module.exports = {
@@ -86,9 +86,6 @@ module.exports = {
     'no-nested-ternary': 0,
     'guard-for-in': 0,
     'jsx-a11y/label-has-associated-control': 1,
-    'react/button-has-type': 0,
-    'no-unused-expressions': 0,
-    'import/no-unresolved': 0,
   },
   settings: {
     'import/resolver': {
