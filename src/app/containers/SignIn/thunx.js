@@ -12,8 +12,11 @@ export const getSignIn = body => async dispatch => {
   try {
     const response = await axios.post(`/${API.SIGN}`, body);
 
-    await localStorage.setItem('userData', response.data);
-    await dispatch(signInSuccess(response.data));
+    await localStorage.setItem(
+      'userData',
+      JSON.stringify(response.data.payload)
+    );
+    await dispatch(signInSuccess(response.data.payload));
     await toastr('success', 'Sign Successfully!');
   } catch (error) {
     await toastr('error', error.message);

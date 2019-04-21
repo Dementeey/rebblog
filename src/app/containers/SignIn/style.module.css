@@ -4,12 +4,15 @@
 }
 
 .paper {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   width: 350px;
   height: 500px;
   margin: 30px auto;
   padding: 55px 35px 20px;
+  overflow: hidden;
 
   border-radius: 20px !important;
 }
@@ -34,5 +37,19 @@
 
 .logo:hover path,
 .logoFocus path {
+  transition: 0.85s;
+
   fill: #f50057;
+}
+
+.logo path {
+  transition: 0.85s;
+}
+
+.loadingWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
 }

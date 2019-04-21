@@ -12,11 +12,12 @@ import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { ReactComponent as Logo } from '../../../assets/images/logo.svg';
 import styles from './style.module.css';
 
-const SignIn = () => {
+const SignIn = ({ loading, getSignIn }) => {
   const [name, setName] = useState('');
   const [pass, setPass] = useState('');
   const [errorName, setErrorName] = useState(false);
@@ -32,7 +33,10 @@ const SignIn = () => {
     };
 
     console.log('click', data);
+
+    getSignIn(data);
   };
+
   const handleChange = ({ target }) => {
     switch (target.name) {
       case 'name':
@@ -53,6 +57,12 @@ const SignIn = () => {
   return (
     <div className={styles.wrapper}>
       <Paper className={styles.paper} elevation={4}>
+        {loading && (
+          <div className={styles.loadingWrap}>
+            <LinearProgress color="secondary" />
+          </div>
+        )}
+
         <Typography className={styles.title5} variant="h5" color="secondary">
           Welcome to
         </Typography>
@@ -63,7 +73,7 @@ const SignIn = () => {
             className={isFocusInput ? styles.logoFocus : styles.logo}
             style={{
               width: 50,
-              height: 40,
+              height: 50,
             }}
           />
         </Typography>
@@ -71,6 +81,7 @@ const SignIn = () => {
         <FormControl
           margin="normal"
           error={errorName}
+          disabled={loading}
           onBlur={toggleFocus}
           onFocus={toggleFocus}
         >
@@ -91,6 +102,7 @@ const SignIn = () => {
         <FormControl
           margin="normal"
           error={errorPass}
+          disabled={loading}
           onBlur={toggleFocus}
           onFocus={toggleFocus}
         >
@@ -114,12 +126,13 @@ const SignIn = () => {
           color="secondary"
           variant="contained"
           className={styles.button}
+          disabled={loading}
         >
           Sign In
         </Button>
 
         <Typography color="textPrimary">
-          Don&apos;t have an account? <Link to="/about">Read </Link>{' '}
+          Don&apos;t have an account? <Link to="/about">Read </Link>
         </Typography>
       </Paper>
     </div>
@@ -127,10 +140,8 @@ const SignIn = () => {
 };
 
 SignIn.propTypes = {
-  data: PropTypes.object,
-  getSignIn: PropTypes.func,
   loading: PropTypes.bool,
-  error: PropTypes.string,
+  getSignIn: PropTypes.func,
 };
 
 export default SignIn;
