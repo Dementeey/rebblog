@@ -4,14 +4,16 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
+import { ReactComponent as Logo } from '../../../assets/images/logo.svg';
 import logout from '../../../helpers/logout';
 import styles from './index.module.css';
 
@@ -38,13 +40,21 @@ const Header = ({ isAuth, history }) => {
     <AppBar position="sticky" color="default">
       <Toolbar>
         <nav className={styles.nav}>
-          <NavLink to="/" exact>
+          <Logo
+            className="logo"
+            style={{
+              width: 50,
+              height: 50,
+              marginRight: 20,
+            }}
+          />
+          <Button color="primary" component={Link} to="/">
             Главная
-          </NavLink>
-          <NavLink to="/about" exact>
+          </Button>
+
+          <Button color="primary" component={Link} to="/about">
             О Блоге
-          </NavLink>
-          {}
+          </Button>
         </nav>
 
         {isAuth && (
@@ -57,6 +67,7 @@ const Header = ({ isAuth, history }) => {
             >
               <AccountCircle />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}

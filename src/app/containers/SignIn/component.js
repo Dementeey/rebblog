@@ -100,7 +100,7 @@ const SignIn = ({ loading, getSignIn }) => {
         <Typography className={styles.title3} variant="h3" color="primary">
           RebbiBlog
           <Logo
-            className={isFocusInput ? styles.logoFocus : styles.logo}
+            className={isFocusInput ? styles.logoFocus : 'logo'}
             style={{
               width: 50,
               height: 50,

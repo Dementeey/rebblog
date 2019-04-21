@@ -88,9 +88,8 @@ App.propTypes = {
  * Connect App
  */
 
-const mapStateToProps = ({ sign, post }) => ({
+const mapStateToProps = ({ sign }) => ({
   signData: sign.data,
-  postData: post.data,
 });
 
 const mapDispatchToProps = dispatch => ({

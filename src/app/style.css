@@ -8,14 +8,16 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  /* background-color: rgba(226, 148, 199, 0.196); */
+
+  background-color: rgb(255, 255, 255);
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* background-color: rgba(226, 148, 199, 0.196); */
-  background-color: rgb(255, 255, 255);
 }
 
 .page-loader {
@@ -28,17 +30,34 @@ body {
 }
 
 .page-loader::before {
-  content: '';
+  content: "";
   position: fixed;
-  left: 0;
   top: 0;
   right: 0;
   bottom: 0;
+  left: 0;
+  z-index: 10;
+
   width: 100vw;
   height: 100vh;
+
   background-color: rgba(180, 180, 180, 0.25);
   transform: translate(-50%, -50%) scale(10);
-  z-index: 10;
+}
+
+
+/*
+  Logo global style
+*/
+
+.logo:hover path {
+  transition: 0.85s;
+
+  fill: #f50057;
+}
+
+.logo path {
+  transition: 0.85s;
 }
 
 
@@ -49,9 +68,10 @@ body {
 
 input,
 textarea {
-  font-family: 'Roboto', sans-serif;
   line-height: 1.4;
-  background: #eee;
+  font-family: "Roboto", sans-serif;
+
+  background: #eeeeee;
 }
 
 body {
@@ -64,14 +84,18 @@ p {
 
 pre {
   padding: 10px;
-  background-color: #eee;
+
   white-space: pre-wrap;
+
+  background-color: #eeeeee;
 }
 
 :not(pre) > code {
-  font-family: monospace;
-  background-color: #eee;
   padding: 3px;
+
+  font-family: monospace;
+
+  background-color: #eeeeee;
 }
 
 img {
@@ -80,19 +104,22 @@ img {
 }
 
 blockquote {
-  border-left: 2px solid #ddd;
-  margin-left: 0;
   margin-right: 0;
+  margin-left: 0;
   padding-left: 10px;
-  color: #aaa;
+
+  color: #aaaaaa;
   font-style: italic;
+
+  border-left: 2px solid #dddddd;
 }
 
-blockquote[dir='rtl'] {
-  border-left: none;
-  padding-left: 0;
+blockquote[dir="rtl"] {
   padding-right: 10px;
-  border-right: 2px solid #ddd;
+  padding-left: 0;
+
+  border-right: 2px solid #dddddd;
+  border-left: none;
 }
 
 table {
@@ -101,21 +128,24 @@ table {
 
 td {
   padding: 10px;
-  border: 2px solid #ddd;
+
+  border: 2px solid #dddddd;
 }
 
 input {
   box-sizing: border-box;
-  font-size: 0.85em;
   width: 100%;
   padding: 0.5em;
-  border: 2px solid #ddd;
+
+  font-size: 0.85em;
+
   background: #fafafa;
+  border: 2px solid #dddddd;
 }
 
 input:focus {
-  outline: 0;
   border-color: blue;
+  outline: 0;
 }
 
 [data-slate-editor] > * + * {
