@@ -9,7 +9,7 @@
   width: 350px;
   height: 500px;
   margin: 30px auto;
-  padding: 65px 35px 20px;
+  padding: 55px 35px 20px;
 
   border-radius: 20px !important;
 }
@@ -19,6 +19,9 @@
 }
 
 .title3 {
+  display: flex !important;
+  margin-top: 0.8rem !important;
+
   font-weight: bold !important;
 }
 
@@ -27,4 +30,9 @@
   margin: 50px 0 !important;
 
   border-radius: 20px !important;
+}
+
+.logo:hover path,
+.logoFocus path {
+  fill: #f50057;
 }

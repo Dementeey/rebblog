@@ -13,6 +13,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
+import { ReactComponent as Logo } from '../../../assets/images/logo.svg';
 import styles from './style.module.css';
 
 const SignIn = () => {
@@ -20,6 +21,9 @@ const SignIn = () => {
   const [pass, setPass] = useState('');
   const [errorName, setErrorName] = useState(false);
   const [errorPass, setErrorPass] = useState(false);
+  const [isFocusInput, setFocusInput] = useState(false);
+
+  const toggleFocus = () => setFocusInput(!isFocusInput);
 
   const handleClick = () => {
     const data = {
@@ -55,9 +59,21 @@ const SignIn = () => {
 
         <Typography className={styles.title3} variant="h3" color="primary">
           RebbiBlog
+          <Logo
+            className={isFocusInput ? styles.logoFocus : styles.logo}
+            style={{
+              width: 50,
+              height: 40,
+            }}
+          />
         </Typography>
 
-        <FormControl margin="normal" error={errorName}>
+        <FormControl
+          margin="normal"
+          error={errorName}
+          onBlur={toggleFocus}
+          onFocus={toggleFocus}
+        >
           <InputLabel htmlFor="component-helper">Name</InputLabel>
           <Input
             id="component-helper"
@@ -72,7 +88,12 @@ const SignIn = () => {
           )}
         </FormControl>
 
-        <FormControl margin="normal" error={errorPass}>
+        <FormControl
+          margin="normal"
+          error={errorPass}
+          onBlur={toggleFocus}
+          onFocus={toggleFocus}
+        >
           <InputLabel htmlFor="component-helper">Password</InputLabel>
           <Input
             id="component-helper"
