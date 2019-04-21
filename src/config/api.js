@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getUserData } from '../helpers/userUtils';
 
 export const API = {
   URL: process.env.REACT_APP_API_HOST || 'http://localhost:9000',
@@ -9,7 +10,7 @@ export const API = {
   UNSPLASH_PHOTO: '/search/photos',
 };
 
-const user = JSON.parse(localStorage.getItem('userData'));
+const user = getUserData();
 
 if (user) {
   const { accessToken, refreshToken } = user;
