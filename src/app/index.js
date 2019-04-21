@@ -25,26 +25,20 @@ const App = ({ setDataInState, signData }) => {
   const [isAuth, setAuth] = useState(false);
   const user = getUserData();
 
+  if (!_isEmpty(user) && user.accessToken && user.refreshToken && !isAuth) {
+    setAuth(true);
+  }
+
   useEffect(() => {
-    if (!_isEmpty(user) && user.accessToken && user.refreshToken) {
-      setAuth(true);
+    if (
+      _isEmpty(signData) &&
+      !_isEmpty(user) &&
+      user.accessToken &&
+      user.refreshToken
+    ) {
+      setDataInState(user);
     }
   }, []);
-
-  useEffect(
-    () => {
-      if (
-        _isEmpty(signData) &&
-        !_isEmpty(user) &&
-        user.accessToken &&
-        user.refreshToken
-      ) {
-        setDataInState(user);
-        setAuth(true);
-      }
-    },
-    [signData]
-  );
 
   return (
     <>
