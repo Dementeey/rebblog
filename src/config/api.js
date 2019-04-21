@@ -3,14 +3,20 @@ import axios from 'axios';
 export const API = {
   URL: process.env.REACT_APP_API_HOST || 'http://localhost:9000',
   POSTS: 'api/posts/',
-  UNSPLASH_URL: 'https://api.unsplash.com',
+  SIGN: 'api/sign/',
+  UNSPLASH_URL:
+    process.env.REACT_APP_API_UNSPLASH || 'https://api.unsplash.com',
   UNSPLASH_PHOTO: '/search/photos',
 };
-const accessToken = localStorage.getItem('accessToken') || '1234';
-const refreshToken = localStorage.getItem('refreshToken') || '1234';
+
+const user = JSON.parse(localStorage.getItem('userData'));
+
+if (user) {
+  const { accessToken, refreshToken } = user;
+  axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+  axios.defaults.headers.common.refresh_token = `Bearer ${refreshToken}`;
+}
 
 axios.defaults.baseURL = API.URL;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.put['Content-Type'] = 'application/json';
-axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-axios.defaults.headers.common.refresh_token = `Bearer ${refreshToken}`;
