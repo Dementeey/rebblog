@@ -3,7 +3,7 @@
  */
 
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { symbol } from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -20,10 +20,14 @@ import styles from './style.module.css';
 const SignIn = ({ loading, getSignIn }) => {
   const [name, setName] = useState('');
   const [pass, setPass] = useState('');
-  const [errorName, setErrorName] = useState(false);
-  const [errorPass, setErrorPass] = useState(false);
   const [isFocusInput, setFocusInput] = useState(false);
+  const [isErrorName, setIsErrorName] = useState(false);
+  const [isErrorPass, setIsErrorPass] = useState(false);
+  const [errorName, setErrorName] = useState('');
+  const [errorPass, setErrorPass] = useState('');
 
+  const errorSpaceMsg = 'Поле не может быть содержать пробел(лы)';
+  const getErrorMsg = num => `Поле не может быть короче ${num} символов`;
   const toggleFocus = () => setFocusInput(!isFocusInput);
 
   const handleClick = () => {
@@ -32,7 +36,31 @@ const SignIn = ({ loading, getSignIn }) => {
       password: pass,
     };
 
-    console.log('click', data);
+    // Validation password name
+    if (name.length < 6) {
+      setIsErrorName(true);
+      setErrorName(getErrorMsg(6));
+      return;
+    }
+
+    if (name.includes(' ')) {
+      setIsErrorName(true);
+      setErrorName(errorSpaceMsg);
+      return;
+    }
+
+    // Validation password field
+    if (pass.length < 8) {
+      setIsErrorPass(true);
+      setErrorPass(getErrorMsg(8));
+      return;
+    }
+
+    if (pass.includes(' ')) {
+      setIsErrorPass(true);
+      setErrorPass(errorSpaceMsg);
+      return;
+    }
 
     getSignIn(data);
   };
@@ -41,12 +69,14 @@ const SignIn = ({ loading, getSignIn }) => {
     switch (target.name) {
       case 'name':
         setName(target.value);
-        setErrorName(false);
+        setIsErrorName(false);
+        setErrorName('');
         break;
 
       case 'pass':
         setPass(target.value);
-        setErrorPass(false);
+        setIsErrorPass(false);
+        setErrorPass('');
         break;
 
       default:
@@ -80,43 +110,48 @@ const SignIn = ({ loading, getSignIn }) => {
 
         <FormControl
           margin="normal"
-          error={errorName}
+          error={isErrorName}
           disabled={loading}
           onBlur={toggleFocus}
           onFocus={toggleFocus}
         >
-          <InputLabel htmlFor="component-helper">Name</InputLabel>
+          <InputLabel htmlFor="component-helper-name">Name</InputLabel>
           <Input
-            id="component-helper"
+            id="component-helper-name"
             value={name}
             onChange={handleChange}
             aria-describedby="component-helper-text"
             name="name"
           />
 
-          {errorName && (
-            <FormHelperText id="component-helper-text">Ошибка!</FormHelperText>
+          {isErrorName && (
+            <FormHelperText id="component-helper-text">
+              {errorName}
+            </FormHelperText>
           )}
         </FormControl>
 
         <FormControl
           margin="normal"
-          error={errorPass}
+          error={isErrorPass}
           disabled={loading}
           onBlur={toggleFocus}
           onFocus={toggleFocus}
         >
-          <InputLabel htmlFor="component-helper">Password</InputLabel>
+          <InputLabel htmlFor="component-helper-pass">Password</InputLabel>
           <Input
-            id="component-helper"
+            id="component-helper-pass"
             value={pass}
             onChange={handleChange}
-            aria-describedby="component-helper-text"
+            aria-describedby="component-helper-text-pass"
             name="pass"
+            type="password"
           />
 
-          {errorPass && (
-            <FormHelperText id="component-helper-text">Ошибка!</FormHelperText>
+          {isErrorPass && (
+            <FormHelperText id="component-helper-text-pass">
+              {errorPass}
+            </FormHelperText>
           )}
         </FormControl>
 
