@@ -1,3 +1,11 @@
 import React from 'react';
+import page404 from '../../../assets/images/404-page.jpg';
 
-export default () => <h1>SORRY, 404 NOT FOUND PAGE</h1>;
+export default () => (
+  <div
+    style={{
+      height: '100%',
+      background: `url(${page404}) no-repeat center center / contain`,
+    }}
+  />
+);
