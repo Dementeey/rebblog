@@ -3,7 +3,7 @@
  */
 
 import React, { useState } from 'react';
-import PropTypes, { symbol } from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -100,7 +100,7 @@ const SignIn = ({ loading, getSignIn }) => {
         <Typography className={styles.title3} variant="h3" color="primary">
           RebbiBlog
           <Logo
-            className={isFocusInput ? styles.logoFocus : styles.logo}
+            className={isFocusInput ? styles.logoFocus : 'logo'}
             style={{
               width: 50,
               height: 50,
