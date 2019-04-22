@@ -65,7 +65,7 @@ const Header = ({ isAuth, history }) => {
               onClick={handleOpenMenu}
               color="inherit"
             >
-              <AccountCircle />
+              <AccountCircle color="primary" />
             </IconButton>
 
             <Menu
