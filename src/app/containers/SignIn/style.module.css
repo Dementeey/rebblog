@@ -35,10 +35,15 @@
   border-radius: 20px !important;
 }
 
+.logo:hover path,
 .logoFocus path {
   transition: 0.85s;
 
   fill: #f50057;
+}
+
+.logo path {
+  transition: 0.85s;
 }
 
 .loadingWrap {

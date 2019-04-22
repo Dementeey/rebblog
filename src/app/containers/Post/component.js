@@ -1,14 +1,13 @@
 /**
+ * @flow
  * Post - component
  */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _isEmpty from 'lodash/isEmpty';
 import Loader from '../../components/Loader';
-
 import getDateRu from '../../../helpers/getDateRu';
-import styles from './style.module.css';
+import './style.module.css';
 
 export default class Post extends Component {
   componentDidMount() {
@@ -19,20 +18,19 @@ export default class Post extends Component {
 
   renderPost = () => {
     const { data } = this.props;
+    const currentData = data.filter(
+      el => el.postId === this.props.match.params.id
+    );
 
     return (
-      <article className={styles.post}>
+      <div className="post">
         <header>
-          <h1 className={styles.title}>{data.title}</h1>
-          <p>{getDateRu(data.createdAt)}</p>
+          <h1 className="post__title">{currentData[0].title}</h1>
+          <p>{getDateRu(currentData[0].createdAt)}</p>
         </header>
 
-        <section>{data.description}</section>
-
-        <footer>
-          <p>{getDateRu(data.updatedAt)}</p>
-        </footer>
-      </article>
+        <section>{currentData[0].description}</section>
+      </div>
     );
   };
 
@@ -41,14 +39,14 @@ export default class Post extends Component {
     return (
       <>
         <Loader loading={loading} />
-        {!_isEmpty(this.props.data) && this.renderPost()}
+        {!!this.props.data.length && this.renderPost()}
       </>
     );
   }
 }
 
 Post.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   match: PropTypes.object,
   getPost: PropTypes.func,
   loading: PropTypes.bool,

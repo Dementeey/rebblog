@@ -8,56 +8,15 @@
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
-
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
-  /* background-color: rgba(226, 148, 199, 0.196); */
-
-  background-color: rgb(255, 255, 255);
-
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* background-color: rgba(226, 148, 199, 0.196); */
+  background-color: rgb(255, 255, 255);
 }
-
-.scroll-view {
-  width: 100%;
-  height: calc(100vh - 64px);
-  padding: 20px 25px;
-  overflow-y: auto;
-}
-
-@media screen and (max-width: 600px) {
-  .scroll-view {
-    height: calc(100vh - 56px);
-  }
-}
-
-/*
- *  STYLE 7
- */
-
-.scroll-view::-webkit-scrollbar-track {
-  background-color: #f5f5f5;
-  border-radius: 15px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
-
-.scroll-view::-webkit-scrollbar {
-  width: 10px;
-
-  background-color: #f5f5f5;
-}
-
-.scroll-view::-webkit-scrollbar-thumb {
-  background-color: #3f51b5;
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
-
-
-
 
 .page-loader {
   position: fixed;
@@ -69,37 +28,17 @@ body {
 }
 
 .page-loader::before {
-  content: "";
+  content: '';
   position: fixed;
+  left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
-  z-index: 10;
-
   width: 100vw;
   height: 100vh;
-
   background-color: rgba(180, 180, 180, 0.25);
   transform: translate(-50%, -50%) scale(10);
-}
-
-
-/*
-  Logo global style
-*/
-
-
-@media (hover: hover) {
-  .logo:hover path {
-    transition: 0.85s;
-
-    fill: #f50057;
-  }
-}
-
-.logo path {
-  transition: 0.85s;
+  z-index: 10;
 }
 
 
@@ -110,12 +49,14 @@ body {
 
 input,
 textarea {
+  font-family: 'Roboto', sans-serif;
   line-height: 1.4;
-  font-family: "Roboto", sans-serif;
-
-  background: #eeeeee;
+  background: #eee;
 }
 
+body {
+  margin: 0;
+}
 
 p {
   margin: 0;
@@ -123,18 +64,14 @@ p {
 
 pre {
   padding: 10px;
-
+  background-color: #eee;
   white-space: pre-wrap;
-
-  background-color: #eeeeee;
 }
 
 :not(pre) > code {
-  padding: 3px;
-
   font-family: monospace;
-
-  background-color: #eeeeee;
+  background-color: #eee;
+  padding: 3px;
 }
 
 img {
@@ -143,22 +80,19 @@ img {
 }
 
 blockquote {
-  margin-right: 0;
+  border-left: 2px solid #ddd;
   margin-left: 0;
+  margin-right: 0;
   padding-left: 10px;
-
-  color: #aaaaaa;
+  color: #aaa;
   font-style: italic;
-
-  border-left: 2px solid #dddddd;
 }
 
-blockquote[dir="rtl"] {
-  padding-right: 10px;
-  padding-left: 0;
-
-  border-right: 2px solid #dddddd;
+blockquote[dir='rtl'] {
   border-left: none;
+  padding-left: 0;
+  padding-right: 10px;
+  border-right: 2px solid #ddd;
 }
 
 table {
@@ -167,24 +101,21 @@ table {
 
 td {
   padding: 10px;
-
-  border: 2px solid #dddddd;
+  border: 2px solid #ddd;
 }
 
 input {
   box-sizing: border-box;
+  font-size: 0.85em;
   width: 100%;
   padding: 0.5em;
-
-  font-size: 0.85em;
-
+  border: 2px solid #ddd;
   background: #fafafa;
-  border: 2px solid #dddddd;
 }
 
 input:focus {
-  border-color: blue;
   outline: 0;
+  border-color: blue;
 }
 
 [data-slate-editor] > * + * {

@@ -9,7 +9,7 @@ import {
 } from './constants';
 
 export const initialState = {
-  data: {},
+  data: [],
   error: '',
   loading: false,
   getPostId: null,
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
     case GET_POST_ERROR:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.error,
         loading: false,
       };
 
