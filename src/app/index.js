@@ -2,11 +2,8 @@
  * App index
  */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import _isEmpty from 'lodash/isEmpty';
 import Home from './containers/Home';
 import About from './elements/About';
 import Header from './components/Header';
@@ -15,90 +12,25 @@ import Post from './containers/Post';
 import AdminPanelPage from './containers/AdminPanelPage';
 import AdminPanelEditor from './containers/AdminPanelEditor';
 import SignIn from './containers/SignIn';
-
-import { signInSuccess } from './containers/SignIn/actions';
-import PrivateRouter from '../helpers/PrivateRouter';
-import { getUserData } from '../helpers/userUtils';
 import './style.css';
 
-const App = ({ setDataInState, signData }) => {
-  const [isAuth, setAuth] = useState(false);
-  const user = getUserData();
+const App = () => (
+  <div>
+    <Route path="/" component={Header} />
 
-  if (!_isEmpty(user) && user.accessToken && user.refreshToken && !isAuth) {
-    setAuth(true);
-  }
+    <main>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/post/:id" component={Post} />
+        <Route exact path="/panel" component={AdminPanelPage} />
+        <Route exact path="/panel/edit" component={AdminPanelEditor} />
+        <Route exact path="/panel/sign" component={SignIn} />
 
-  useEffect(() => {
-    if (
-      _isEmpty(signData) &&
-      !_isEmpty(user) &&
-      user.accessToken &&
-      user.refreshToken
-    ) {
-      setDataInState(user);
-    }
-  }, []);
-
-  return (
-    <>
-      <Route path="/" render={props => <Header isAuth={isAuth} {...props} />} />
-
-      <main className="scroll-view">
-        <Switch>
-          <PrivateRouter
-            exact
-            isAuth={isAuth}
-            to="/"
-            path="/panel"
-            component={AdminPanelPage}
-          />
-          <PrivateRouter
-            exact
-            isAuth={isAuth}
-            to="/"
-            path="/panel/edit"
-            component={AdminPanelEditor}
-          />
-
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/post/:id" component={Post} />
-          <PrivateRouter
-            exact
-            isAuth={!isAuth}
-            to="/panel"
-            path="/panel/sign"
-            component={SignIn}
-          />
-
-          <Route component={NotFoundPage} />
-        </Switch>
-      </main>
-    </>
-  );
-};
-
-App.propTypes = {
-  signData: PropTypes.object,
-  setDataInState: PropTypes.func,
-};
-
-/**
- * Connect App
- */
-
-const mapStateToProps = ({ sign }) => ({
-  signData: sign.data,
-});
-
-const mapDispatchToProps = dispatch => ({
-  setDataInState: data => dispatch(signInSuccess(data)),
-});
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
+        <Route component={NotFoundPage} />
+      </Switch>
+    </main>
+  </div>
 );
+
+export default withRouter(App);
