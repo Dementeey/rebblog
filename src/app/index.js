@@ -42,9 +42,9 @@ const App = ({ setDataInState, signData }) => {
 
   return (
     <>
-      <Route path="/" component={Header} />
+      <Route path="/" render={props => <Header isAuth={isAuth} {...props} />} />
 
-      <main>
+      <main className="scroll-view">
         <Switch>
           <PrivateRouter
             exact

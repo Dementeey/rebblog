@@ -10,7 +10,7 @@ import toastr from '../../../helpers/toastr';
 export const fetchPosts = () => dispatch => {
   dispatch(getPostsRequest());
   return axios
-    .get(`${API.URL}/${API.POSTS}`)
+    .get(API.POSTS)
     .then(({ data }) => dispatch(getPostsSuccess(data.payload)))
     .catch(error => {
       toastr('error', error.message);

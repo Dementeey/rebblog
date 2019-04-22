@@ -3,8 +3,9 @@ import { getUserData } from '../helpers/userUtils';
 
 export const API = {
   URL: process.env.REACT_APP_API_HOST || 'http://localhost:9000',
-  POSTS: 'api/posts/',
-  SIGN: 'api/sign/',
+  POSTS: '/api/posts',
+  POST: '/api/post',
+  SIGN: '/api/sign',
   UNSPLASH_URL:
     process.env.REACT_APP_API_UNSPLASH || 'https://api.unsplash.com',
   UNSPLASH_PHOTO: '/search/photos',
