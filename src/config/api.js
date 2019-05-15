@@ -2,7 +2,8 @@ import axios from 'axios';
 import { getUserData } from '../helpers/userUtils';
 
 export const API = {
-  URL: process.env.REACT_APP_API_HOST || 'http://localhost:9000',
+  URL: `${process.env.REACT_APP_API_HOST || 'http://localhost'}:${process.env
+    .REACT_APP_API_PORT || 9000}`,
   POSTS: '/api/posts',
   POST: '/api/post',
   SIGN: '/api/sign',
