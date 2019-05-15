@@ -13,7 +13,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import LinearProgress from '@material-ui/core/LinearProgress';
-
+import constants from '../../../config/constants';
 import { ReactComponent as Logo } from '../../../assets/images/logo.svg';
 import styles from './style.module.css';
 
@@ -98,7 +98,7 @@ const SignIn = ({ loading, getSignIn }) => {
         </Typography>
 
         <Typography className={styles.title3} variant="h3" color="primary">
-          RebbiBlog
+          {constants.APP_NAME}
           <Logo
             className={isFocusInput ? styles.logoFocus : 'logo'}
             style={{
